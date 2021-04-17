@@ -1,16 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
-using System;
-using System.Text.RegularExpressions;
-
 using NiL.JS.BaseLibrary;
 using NiL.JS.Core;
 using NiL.JS.Extensions;
+using System;
+using System.Net.Http;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace worker.Controllers
 {
@@ -19,9 +16,11 @@ namespace worker.Controllers
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly ILogger<worker> _logger;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public worker(ILogger<worker> logger, IWebHostEnvironment webHostEnvironment)
+        public worker(IHttpClientFactory httpClientFactory, ILogger<worker> logger, IWebHostEnvironment webHostEnvironment)
         {
+            _httpClientFactory = httpClientFactory;
             _webHostEnvironment = webHostEnvironment;
             _logger = logger;
         }
@@ -75,15 +74,19 @@ async function wrapped(request, context) {{
     let response = await handleRequest(JSON.parse(request));    
     return JSON.stringify(response);
 }}
+
+async function fetchJSON(url, options) {{
+    var str = await _fetchJSON(url, options);
+    return JSON.parse(str);
+}}
 ";
             var context = new Context();
 
             context
-                .DefineVariable("fetch")
-                .Assign(JSValue.Marshal(new Func<string, Task<dynamic>>(FetchAsync)));
+                .DefineVariable("_fetchJSON")
+                .Assign(JSValue.Marshal(new Func<string, dynamic, Task<string>>(FetchJSONAsync)));
 
             context.Eval(wrapped);
-
 
 
             // Act
@@ -99,11 +102,18 @@ async function wrapped(request, context) {{
 
         }
 
-        private async Task<dynamic> FetchAsync(string jsRequest)
+        // does not work with current NuGET version, requires latest dev buid
+        private async Task<string> FetchJSONAsync(string url, dynamic options)
         {
-            // await Task.Delay(10);
-            var hello = new { hello = jsRequest };
-            return hello;
+            var httpClient = _httpClientFactory.CreateClient();
+
+            var response = await httpClient.GetAsync(url);
+            string responseBody = await response.Content.ReadAsStringAsync();
+
+            // todo error handling/wrapping
+            response.EnsureSuccessStatusCode();
+
+            return responseBody;
         }
 
     }
