@@ -8,7 +8,7 @@ _AccessTokenServiceEndpoint: https://app.adenin.com/oauth2/token
 
 async function handleRequest(request) {
 
-  var response = await fetchJSON(`https://localhost:44367/api/session/myprofile`, { 
+  var response = await fetchJSON(`https://app.adenin.com/api/session/myprofile`, { 
     'credentials': 'omit',
     headers: {    
       'Authorization': 'Bearer ' + request._token
