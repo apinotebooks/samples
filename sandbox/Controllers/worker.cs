@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using NiL.JS;
 using NiL.JS.BaseLibrary;
 using NiL.JS.Core;
 using NiL.JS.Extensions;
+using sandbox.Utils;
 using System;
 using System.Net.Http;
 using System.Text.RegularExpressions;
@@ -67,39 +69,55 @@ namespace worker.Controllers
         {
             // wrap function to return result as JSON string
             var wrapped = $@"
+                {script}
 
-{script}
+                async function wrapped(request, context) {{     
+                    let response = await handleRequest(JSON.parse(request));    
+                    return JSON.stringify(response);
+                }}
 
-async function wrapped(request, context) {{     
-    let response = await handleRequest(JSON.parse(request));    
-    return JSON.stringify(response);
-}}
+                async function fetchJSON(url, options) {{
+                    var str = await _fetchJSON(url, options);
+                    return JSON.parse(str);
+                }}
+            ";
 
-async function fetchJSON(url, options) {{
-    var str = await _fetchJSON(url, options);
-    return JSON.parse(str);
-}}
-";
-            var context = new Context();
+            var module = new Module(wrapped);
 
-            context
+            module
+                .Context
                 .DefineVariable("_fetchJSON")
                 .Assign(JSValue.Marshal(new Func<string, dynamic, Task<string>>(FetchJSONAsync)));
 
-            context.Eval(wrapped);
+            module
+                .Context
+                .DefineVariable("sandboxImport")
+                .Assign(JSValue.Marshal(new Func<string, Task<JSValue>>(SandboxImporter.Import)));
 
+            try
+            {
+                module.Run();
 
-            // Act
-            var resultJSON = await context.GetVariable("wrapped")
-                .As<Function>()
-                .Call(new Arguments { SimpleJson.SimpleJson.SerializeObject(request) })
-                .As<Promise>()
-                .Task;
+                // Act
+                var resultJSON = await module
+                    .Context
+                    .GetVariable("wrapped")
+                    .As<Function>()
+                    .Call(new Arguments { SimpleJson.SimpleJson.SerializeObject(request) })
+                    .As<Promise>()
+                    .Task;
 
-            dynamic result = SimpleJson.SimpleJson.DeserializeObject((string)resultJSON.Value);
+                dynamic result = SimpleJson.SimpleJson.DeserializeObject((string)resultJSON.Value);
 
-            return result;
-
+                return result;
+            }
+            catch (Exception e)
+            {
+                return new
+                {
+                    error = e.Message
+                };
+            }
         }
 
         // does not work with current NuGET version, requires latest dev buid
