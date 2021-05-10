@@ -1,8 +1,8 @@
 ---
-ConnectorName: local
+ConnectorName: adenin
 _ClientId: u7oj6xkjzu4ysa1pxt54jtlykk34978f
-_AccessCodeServiceEndpoint: https://app.adenin.com/oauth2/authorize
-_AccessTokenServiceEndpoint: https://app.adenin.com/oauth2/token
+_AccessCodeServiceEndpoint: https://adenin.azurewebsites.net/oauth2/authorize
+_AccessTokenServiceEndpoint: https://adenin.azurewebsites.net/oauth2/token
 ---
 ```javascript worker
 
@@ -15,7 +15,17 @@ async function handleRequest(request) {
       'Authorization': 'Bearer ' + request._token
     }
   }); 
-                                       
+  
+  console.log(response.Data._hash);
+
+  var ids="";
+
+  for(var i=0;i<response.Data.items.length;i++) {
+    ids = ids + ";" + response.Data.items[i].id;
+  }
+
+console.log(ids);
+  
   return response;
 }
 
