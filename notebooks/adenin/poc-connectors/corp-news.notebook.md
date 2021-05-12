@@ -54,29 +54,205 @@ async function handleRequest(request) {
 
 ```
 
-# News Feed
+# Corp News
 
 See the latest company news
-
-## Benefits
+# Benefits
 
 The News Card shows the user a list of the most recent news items from a connected source, such as the company intranet. The list shows 3 items by default and the user can click the expand icon to make the list larger.
-
-## Utterances
-
+# Utterances
 1. What’s new?
 2. What are my news?
 3. (Show me|read) (my|corporate|company) news
 
-## Audience
-
+# Audience
 All
 
-## Features
+# Features
+List
 
-Notifications
-
-## Screenshots
-
-1. ![Shows a list of news items in a Card](https://www.adenin.com/assets/images/wp-images/2019/01/News-Card.png)
-2. ![See company-issued news with links to external sources](https://www.adenin.com/assets/images/wp-images/2019/01/my.nowassistant.com_App-3-2.png)
+```json adaptive-card
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.2",
+  "body": [
+    {
+      "speak": "Tom\u0027s Pie is a Pizza restaurant which is rated 9.3 by customers.",
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": 2,
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "${ago}",
+              "isSubtle": true
+            },
+            {
+              "type": "TextBlock",
+              "text": "${title}",
+              "weight": "Bolder",
+              "size": "ExtraLarge",
+              "spacing": "None",
+              "wrap": true,
+              "maxLines": 3
+            },
+            {
+              "type": "TextBlock",
+              "text": "We\u0027re excited to be have been selected the best employer of Winchuck county for the third consecutive year. This shows Toaster Inc.\u0027s ongoing...",
+              "spacing": "None",
+              "wrap": true,
+              "maxLines": 3
+            },
+            {
+              "type": "ColumnSet",
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": "auto",
+                  "items": [
+                    {
+                      "type": "Image",
+                      "url": "https://images.generated.photos/DgVY_QdGVjICaywq3IIaleHQW_1tt7_i3RpD2zXtuPI/rs:fit:512:512/Z3M6Ly9nZW5lcmF0/ZWQtcGhvdG9zL3Yz/XzAzMTY0MjRfMDMx/MTY4N18wNTc0ODcy/LmpwZw.jpg",
+                      "size": "Small",
+                      "style": "Person"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": "stretch",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "**Stefanie Wittacker** posted on Internal Comms Blog",
+                      "size": "Small",
+                      "wrap": true,
+                      "maxLines": 3
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": 1,
+          "items": [
+            {
+              "type": "Image",
+              "url": "${thumbnail}",
+              "size": "auto"
+            }
+          ]
+        }
+      ],
+      "selectAction": {
+        "type": "Action.OpenUrl",
+        "url": "${link}",
+        "id": "${id}-link"
+      }
+    },
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": "auto",
+          "items": [
+            {
+              "type": "Image",
+              "url": "https://img.icons8.com/material-two-tone/48/000000/thumb-up--v1.png",
+              "width": "20px",
+              "spacing": "None",
+              "id": "Like"
+            },
+            {
+              "type": "Image",
+              "url": "data:image/svg\u002Bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iNDgiIGhlaWdodD0iNDgiCnZpZXdCb3g9IjAgMCAxNzIgMTcyIgpzdHlsZT0iIGZpbGw6IzAwMDAwMDsiPjxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0ibm9uemVybyIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIGZvbnQtZmFtaWx5PSJub25lIiBmb250LXdlaWdodD0ibm9uZSIgZm9udC1zaXplPSJub25lIiB0ZXh0LWFuY2hvcj0ibm9uZSIgc3R5bGU9Im1peC1ibGVuZC1tb2RlOiBub3JtYWwiPjxwYXRoIGQ9Ik0wLDE3MnYtMTcyaDE3MnYxNzJ6IiBmaWxsPSJub25lIj48L3BhdGg\u002BPGcgZmlsbD0iIzM0OThkYiI\u002BPHBhdGggZD0iTTE0LjMzMzMzLDcxLjY2NjY3aDQzdjcxLjY2NjY3aC00M3oiIG9wYWNpdHk9IjAuMyI\u002BPC9wYXRoPjxwYXRoIGQ9Ik01MC4xNjY2Nyw2NC41aC00M3Y4Nmg0M2M3LjkxOTE3LDAgMTQuMzMzMzMsLTYuNDE0MTcgMTQuMzMzMzMsLTE0LjMzMzMzdi01Ny4zMzMzM2MwLC03LjkxOTE3IC02LjQxNDE3LC0xNC4zMzMzMyAtMTQuMzMzMzMsLTE0LjMzMzMzek01MC4xNjY2NywxMzYuMTY2NjdoLTI4LjY2NjY3di01Ny4zMzMzM2gyOC42NjY2N3oiPjwvcGF0aD48cGF0aCBkPSJNMTUwLjUsNTcuMzMzMzNoLTQ1LjUxNTVsNi43MDgsLTMwLjc4OGMxLjA0NjMzLC00LjgwODgzIC0wLjQ0NDMzLC05LjgxODMzIC0zLjk1NiwtMTMuMjY1NWwtNi4yMDYzMywtNi4xMTMxN2wtNDcuMTc4MTcsNDcuMjY0MTdjLTIuNjgwMzMsMi42ODc1IC00LjE4NTMzLDYuMzM1MzMgLTQuMTg1MzMsMTAuMTI2NXY3MS42MDkzM2MwLDcuOTE5MTcgNi40MTQxNywxNC4zMzMzMyAxNC4zMzMzMywxNC4zMzMzM2g2NC40NDk4M2M1LjcyNjE3LDAgMTAuOTA3NjcsLTMuNDExMzMgMTMuMTcyMzMsLTguNjc4ODNsMjEuNTUwMTcsLTUwLjE3MzgzYzAuNzY2ODMsLTEuNzg0NSAxLjE2MSwtMy43MTIzMyAxLjE2MSwtNS42NTQ1di0xNC4zMjYxN2MwLC03LjkxOTE3IC02LjQxNDE3LC0xNC4zMzMzMyAtMTQuMzMzMzMsLTE0LjMzMzMzek0xNTAuNSw4NS45OTI4M2wtMjEuNTUwMTcsNTAuMTczODNoLTY0LjQ0OTgzdi03MS42MDkzM2wzMS4wMTAxNywtMzEuMDY3NWwtNC41MjkzMywyMC43OTA1bC0zLjc4NCwxNy4zODYzM2gxNy43OTQ4M2g0NS41MDgzM3oiPjwvcGF0aD48L2c\u002BPC9nPjwvc3ZnPg==",
+              "width": "20px",
+              "spacing": "None",
+              "isVisible": false,
+              "id": "LikeClicked"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "14 people like this",
+              "wrap": true,
+              "id": "14Likes"
+            },
+            {
+              "type": "TextBlock",
+              "text": "15 people like this",
+              "wrap": true,
+              "spacing": "None",
+              "isVisible": false,
+              "weight": "Bolder",
+              "id": "15Likes"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": "auto",
+          "items": [
+            {
+              "type": "ActionSet",
+              "actions": [
+                {
+                  "type": "Action.ToggleVisibility",
+                  "title": "Like",
+                  "targetElements": [
+                    "Like",
+                    "LikeClicked",
+                    "14Likes",
+                    "15Likes"
+                  ]
+                },
+                {
+                  "type": "Action.ToggleVisibility",
+                  "title": "Comment",
+                  "targetElements": [
+                    "CommentSection"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "items": [
+        {
+          "type": "Input.Text",
+          "placeholder": "What do you think?",
+          "id": "${id}-comment"
+        },
+        {
+          "type": "ActionSet",
+          "actions": [
+            {
+              "type": "Action.Submit",
+              "title": "Submit"
+            }
+          ]
+        }
+      ],
+      "isVisible": false,
+      "id": "CommentSection",
+      "style": "emphasis"
+    }
+  ]
+}
+```
