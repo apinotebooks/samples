@@ -1,9 +1,6 @@
 ```javascript connector
 async function handleRequest(request) {
 
-    let {DateTime} = await import('https://esm.run/luxon');
-    var dt = DateTime.now();
-
     let items = [
       {
         id: '1054889',
@@ -13,7 +10,7 @@ async function handleRequest(request) {
         avatar: 'https://www.adenin.com/assets/images/generated_photos/5e68015d6d3b380006d3b6eb-l.jpg',
         integration: 'SharePoint',
         thumbnail: 'https://www.adenin.com/assets/images/wp-images/logo/sharepoint-online.svg',
-        date: dt,
+        now: "5 minutes ago",
         link: 'https://www.adenin.com/pocdef'
       },
       {
@@ -24,7 +21,7 @@ async function handleRequest(request) {
         avatar: 'https://www.adenin.com/assets/images/generated_photos/5e6801926d3b380006d3c33b-l.jpg',
         integration: 'SAP Concur',
         thumbnail: 'https://www.adenin.com/assets/images/wp-images/logo/sap-concur.svg',
-        date: dt,
+        now: "2 hours ago",
         link: 'https://www.adenin.com/pocdef'
       },
       {
@@ -35,7 +32,7 @@ async function handleRequest(request) {
         avatar: 'https://www.adenin.com/assets/images/generated_photos/5f896f545bec830008382c00-l.jpg',
         integration: 'Workday',
         thumbnail: 'https://www.adenin.com/assets/images/wp-images/logo/workday.svg',
-        date: dt,
+         now: "2 hours ago",
         link: 'https://www.adenin.com/pocdef'
       },
       {
@@ -46,7 +43,7 @@ async function handleRequest(request) {
         avatar: 'https://www.adenin.com/assets/images/generated_photos/5f8971ee5bec830008391f96-l.jpg',
         integration: 'SAP Fieldglass',
         thumbnail: 'https://www.adenin.com/assets/images/wp-images/logo/sap-fieldglass.svg',
-        date: dt,
+         now: "yesterday",
         link: 'https://www.adenin.com/pocdef'
       }
     ];
@@ -73,7 +70,6 @@ async function handleRequest(request) {
   
     return response;
 }
-
 ```
 
 # Approvals
