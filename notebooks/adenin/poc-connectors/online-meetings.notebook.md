@@ -1,19 +1,13 @@
 ```javascript connector
 async function handleRequest(request) {
 
-    let {DateTime} = await import('https://esm.run/luxon');
-    var dt = DateTime.now();
-    dt.set({hour: 9}).hour,
-    dt.set({minute: 0}).minute;
-
     let items = [
       {
         id: 1,
         title: 'Board Meeting',
         description: 'Performance review for Q3',
         link: 'https://www.adenin.com/pocdef',
-        date: dt.set({hour: 10}).hour,
-        endDate: dt.set({hour: 11}).hour,
+        ago: "in 30 minutes",        
         duration: "1 hour",
         location: 'Microsoft Teams',
         onlineMeetingUrl: 'https://www.adenin.com/pocdef',
@@ -41,8 +35,7 @@ async function handleRequest(request) {
         title: 'UI/UX Rebrand Briefing',
         description: 'Setting some time aside to discuss the upcoming app rebrand',
         link: 'https://www.adenin.com/pocdef',
-        date: dt.set({hour: 14}).hour,
-        endDate: dt.set({minute: 30}).minute,
+        ago: "in 2 hours",
         duration: "30 minutes",
         onlineMeetingUrl: 'https://www.adenin.com/pocdef',
         location: 'Cisco Webex',
