@@ -5,8 +5,7 @@ async function handleRequest(request) {
       {
         id: '1054880',
         title: 'New website design',
-        created_date: '2021-05-13T08:44:30.524Z',
-        date: "2021-05-15T11:56:00.000Z",
+        ago: '32 minutes ago',
         thumbnail: 'https://www.adenin.com/assets/images/generated_photos/5e6801626d3b380006d3b82f-l.jpg',
         link: 'https://www.adenin.com/pocdef',
         project: 'Website rebrand 2021',
@@ -26,8 +25,7 @@ async function handleRequest(request) {
       {
         id: '1054893',
         title: 'Facebook ad copy',
-        created_date: '2021-04-28T08:44:30.524Z',
-        date: "2021-05-15T09:04:00.000Z"
+        ago: '2 hours ago',
         thumbnail: 'https://www.adenin.com/assets/images/generated_photos/5e6801626d3b380006d3b82f-l.jpg',
         link: 'https://www.adenin.com/pocdef',
         project: 'Website rebrand 2021',
@@ -47,8 +45,7 @@ async function handleRequest(request) {
       {
         id: '1054878',
         title: 'Generate new PDFs',
-        created_date: '2021-05-13T08:44:30.524Z',
-        date: "2021-05-14T09:04:00.000Z",
+        ago: 'yesterday',
         thumbnail: 'https://www.adenin.com/assets/images/generated_photos/5e6801626d3b380006d3b82f-l.jpg',
         link: 'https://www.adenin.com/pocdef',
         project: 'June 2021 campaigns',
