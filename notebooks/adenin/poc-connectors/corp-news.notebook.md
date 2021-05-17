@@ -26,12 +26,13 @@ async function handleRequest(request) {
         thumbnail: 'https://my.digitalassistant.app/rimage/demo.adenin.com/images/t0001054878/tp1000126.png?format=jpeg&width=150&height=150&mode=crop&quality=98',
         ago: "2 days ago"
       }
-    ];
-  
+    ]; 
+
     var value = items.length;
     var response = {};
+
     response.items = items;
-    response.title = 'News Feed';
+    response.title = 'Corporate News';
     response.link = 'https://www.adenin.com/pocdef';
     response.linkLabel = 'All News';
     response.actionable = value > 0;
@@ -47,8 +48,8 @@ async function handleRequest(request) {
 
     response._card = {
       type: 'status-list'
-    };
-  
+    }; 
+
     return response;
 }
 
@@ -57,18 +58,28 @@ async function handleRequest(request) {
 # Corp News
 
 See the latest company news
-# Benefits
+
+## Benefits
 
 The News Card shows the user a list of the most recent news items from a connected source, such as the company intranet. The list shows 3 items by default and the user can click the expand icon to make the list larger.
-# Utterances
+
+## Utterances
+
 1. What’s new?
 2. What are my news?
 3. (Show me|read) (my|corporate|company) news
 
-# Audience
+## Logo
+
+![logo](https://www.adenin.com/assets/images/wp-images/logo/sharepoint-online.svg)
+
+## Audience
+
 All
 
-# Features
+## Features
+
+Notification
 List
 
 ```json adaptive-card
@@ -87,8 +98,7 @@ List
           "items": [
             {
               "type": "TextBlock",
-              "text": "${ago}",
-              "isSubtle": true
+              "text": "${ago}"
             },
             {
               "type": "TextBlock",
@@ -101,7 +111,8 @@ List
             },
             {
               "type": "TextBlock",
-              "text": "We\u0027re excited to be have been selected the best employer of Winchuck county for the third consecutive year. This shows Toaster Inc.\u0027s ongoing...",
+              "text": "${description}",
+              "isSubtle": true,
               "spacing": "None",
               "wrap": true,
               "maxLines": 3
@@ -149,12 +160,7 @@ List
             }
           ]
         }
-      ],
-      "selectAction": {
-        "type": "Action.OpenUrl",
-        "url": "${link}",
-        "id": "${id}-link"
-      }
+      ]
     },
     {
       "type": "ColumnSet",
@@ -236,8 +242,7 @@ List
       "items": [
         {
           "type": "Input.Text",
-          "placeholder": "What do you think?",
-          "id": "${id}-comment"
+          "placeholder": "What do you think?"
         },
         {
           "type": "ActionSet",

@@ -94,6 +94,10 @@ Get a quick overview over IT infrastructure with this list of available servers 
 3. Is any Freshping server down?
 4. Are there (any) (current|recent) Freshping (server) outages?
 
+## Logo
+
+![logo](https://www.adenin.com/assets/images/wp-images/logo/freshping.svg)
+
 ## Audience
 
 All
@@ -102,6 +106,7 @@ All
 
 Notification
 List
+
 ```json adaptive-card
 {
   "type": "AdaptiveCard",

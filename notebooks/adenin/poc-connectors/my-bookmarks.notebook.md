@@ -51,7 +51,7 @@ async function handleRequest(request) {
 
 ```
 
-# My Bookmarks
+# Bookmarks
 
 See a list of bookmarked links for easy access
 
@@ -63,12 +63,185 @@ This Card is a convenient shortcut to a set of bookmarked links.
 
 1. Show (me) (my) (bookmarks|favorites)
 
-# Audience
+## Logo
+
+![logo](https://www.adenin.com/assets/images/identity/Icon_Digital_Assistant.svg)
+
+## Audience
+
 All
 
-# Features
-List
-
 ```json adaptive-card
-
+{
+  "type": "AdaptiveCard",
+  "body": [
+    {
+      "type": "Container",
+      "bleed": true,
+      "items": [
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "Container",
+                  "style": "emphasis",
+                  "items": [
+                    {
+                      "type": "Image",
+                      "url": "${items[0].thumbnail}",
+                      "width": "40px",
+                      "horizontalAlignment": "Center"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "${items[0].title}",
+                      "wrap": true,
+                      "spacing": "Small",
+                      "horizontalAlignment": "Center"
+                    }
+                  ],
+                  "selectAction": {
+                    "type": "Action.OpenUrl",
+                    "id": "bookmark-${items[0].id}",
+                    "url": "${items[0].link}"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "Container",
+                  "style": "emphasis",
+                  "items": [
+                    {
+                      "type": "Image",
+                      "url": "${items[1].thumbnail}",
+                      "width": "40px",
+                      "horizontalAlignment": "Center"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "${items[1].title}",
+                      "wrap": true,
+                      "spacing": "Small",
+                      "horizontalAlignment": "Center"
+                    }
+                  ],
+                  "selectAction": {
+                    "type": "Action.OpenUrl",
+                    "id": "bookmark-${items[1].id}",
+                    "url": "${items[1].link}"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "Container",
+                  "style": "emphasis",
+                  "items": [
+                    {
+                      "type": "Image",
+                      "url": "${items[2].thumbnail}",
+                      "width": "40px",
+                      "horizontalAlignment": "Center"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "${items[2].title}",
+                      "spacing": "Small",
+                      "horizontalAlignment": "Center"
+                    }
+                  ],
+                  "selectAction": {
+                    "type": "Action.OpenUrl",
+                    "id": "bookmark-${items[2].id}",
+                    "url": "${items[2].link}"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "Container",
+                  "style": "emphasis",
+                  "items": [
+                    {
+                      "type": "Image",
+                      "url": "${items[3].thumbnail}",
+                      "width": "40px",
+                      "horizontalAlignment": "Center"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "${items[3].title}",
+                      "wrap": true,
+                      "spacing": "Small",
+                      "horizontalAlignment": "Center"
+                    }
+                  ],
+                  "selectAction": {
+                    "type": "Action.OpenUrl",
+                    "id": "bookmark-${items[3].id}",
+                    "url": "${items[3].link}"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "Container",
+                  "style": "emphasis",
+                  "items": [
+                    {
+                      "type": "Image",
+                      "url": "${items[4].thumbnail}",
+                      "width": "40px",
+                      "horizontalAlignment": "Center"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "${items[4].title}",
+                      "wrap": true,
+                      "spacing": "Small",
+                      "horizontalAlignment": "Center"
+                    }
+                  ],
+                  "selectAction": {
+                    "type": "Action.OpenUrl",
+                    "id": "bookmark-${items[4].id}",
+                    "url": "${items[4].link}"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.2"
+}
 ```

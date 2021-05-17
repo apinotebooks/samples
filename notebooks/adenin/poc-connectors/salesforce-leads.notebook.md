@@ -64,22 +64,33 @@ async function handleRequest(request) {
 }
 
 ```
+
 # Salesforce Leads
 
 See your currently open leads
+
 ## Benefits
 
 With the Leads Card you have lists of your new and open contacts directly at your fingertips. All the contacts data is directly taken from your CRM application and you can enable to be notified whenever new contacts are received.
+
 ## Utterances
+
 1. Show (me) (my) open leads (from|in) Salesforce
 2. Show (me) (my) open Salesforce leads
 
+## Logo
+
+![logo](https://www.adenin.com/assets/images/wp-images/logo/salesforce.svg)
+
 ## Audience
+
 All
 
 ## Features
+
 Notification
 List
+
 ```json adaptive-card
 {
   "type": "AdaptiveCard",

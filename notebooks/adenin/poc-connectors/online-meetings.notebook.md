@@ -102,11 +102,194 @@ See a timeline of your upcoming meetings for the day, including useful details s
 5. Show me my (next|upcoming) Outlook (meetings|events|appointments)
 6. Start my next Outlook (call|meeting|invite)
 
+## Logo
+
+![logo](https://www.adenin.com/assets/images/wp-images/logo/office-365.svg)
+
 ## Audience
 
 All
 
+## Features
+
+List
 
 ```json adaptive-card
-
+{
+  "type": "AdaptiveCard",
+  "version": "1.2",
+  "body": [
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": "75px",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "${ago}",
+              "wrap": true,
+              "horizontalAlignment": "Right",
+              "weight": "Bolder",
+              "isSubtle": true,
+              "color": "Good"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": "49px",
+          "backgroundImage": {
+            "url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAYCAIAAAC0rgCNAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMTZEaa/1AAAAEElEQVQYV2NoaGigHW5oAADAuiQBWxz13QAAAABJRU5ErkJggg==",
+            "fillMode": "RepeatVertically",
+            "horizontalAlignment": "Center",
+            "verticalAlignment": "Center"
+          },
+          "items": [
+            {
+              "type": "Image",
+              "url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYBAMAAAASWSDLAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwQAADsEBuJFr7QAAABl0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC4xNkRpr/UAAAAbUExURf///4CAgICAgICAgICAgICAgICAgICAgICAgK5UnXcAAAAIdFJOUwBMVIePw/f799S5VQAAAD9JREFUGNNjYKAtYAxLFYBzLDo6muESHUAAk2IFcQKgHDYQJwHKYQdxCrApYwJxFGDGeXR0tMDtYQovVaCxvwAJCxPcs9XnIAAAAABJRU5ErkJggg==",
+              "width": "35px",
+              "spacing": "None"
+            }
+          ],
+          "spacing": "None",
+          "bleed": true
+        },
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "TextBlock",
+              "wrap": true,
+              "weight": "Bolder",
+              "isSubtle": true,
+              "text": "${title}",
+              "size": "Large",
+              "spacing": "None"
+            },
+            {
+              "type": "ColumnSet",
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": "auto",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "${duration}",
+                      "wrap": true,
+                      "isSubtle": true,
+                      "spacing": "None"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": "stretch",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "${location}",
+                      "wrap": true,
+                      "isSubtle": true,
+                      "horizontalAlignment": "Right"
+                    }
+                  ]
+                }
+              ],
+              "spacing": "None"
+            },
+            {
+              "type": "ColumnSet",
+              "columns": [
+                {
+                  "type": "Column",
+                  "$data": "${attendees}",
+                  "width": "auto",
+                  "items": [
+                    {
+                      "type": "Image",
+                      "url": "${avatar}",
+                      "width": "35px",
+                      "height": "35px",
+                      "style": "Person",
+                      "altText": "${name}",
+                      "spacing": "None"
+                    }
+                  ],
+                  "spacing": "Small"
+                }
+              ]
+            },
+            {
+              "type": "TextBlock",
+              "text": "${description}",
+              "wrap": true
+            },
+            {
+              "type": "ActionSet",
+              "actions": [
+                {
+                  "type": "Action.OpenUrl",
+                  "title": "Join meeting",
+                  "style": "positive",
+                  "url": "${link}"
+                },
+                {
+                  "type": "Action.ToggleVisibility",
+                  "title": "Change RSVP",
+                  "targetElements": [
+                    "change_rsvp"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Container",
+              "bleed": true,
+              "style": "emphasis",
+              "items": [
+                {
+                  "type": "Input.ChoiceSet",
+                  "choices": [
+                    {
+                      "title": "Maybe",
+                      "value": "Maybe"
+                    },
+                    {
+                      "title": "Decline",
+                      "value": "Decline"
+                    }
+                  ],
+                  "placeholder": "Change my RSVP to...",
+                  "id": "rsvp_status"
+                },
+                {
+                  "type": "ActionSet",
+                  "actions": [
+                    {
+                      "type": "Action.Submit",
+                      "title": "Submit"
+                    }
+                  ]
+                }
+              ],
+              "id": "change_rsvp",
+              "isVisible": false
+            }
+          ],
+          "verticalContentAlignment": "Center",
+          "spacing": "None",
+          "bleed": true
+        }
+      ],
+      "bleed": true,
+      "spacing": "None"
+    }
+  ],
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json"
+}
 ```

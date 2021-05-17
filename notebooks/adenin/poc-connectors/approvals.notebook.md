@@ -73,14 +73,16 @@ async function handleRequest(request) {
 ```
 
 # Approvals
-
 See and manage pending approvals from your employees
-
 ## Utterances
 
 1. What are my (latest|new|pending) approvals?
 2. Show (me) my (latest|new|pending) approvals
 3. Do I have (any) (new|unread|pending) approvals?
+
+## Logo
+
+![logo](https://www.adenin.com/assets/images/identity/Icon_Digital_Assistant.svg)
 
 ## Audience
 
@@ -88,8 +90,267 @@ All
 
 ## Features
 
-Notifications
+Notification
+List
 
 ```json adaptive-card
-
+{
+  "type": "AdaptiveCard",
+  "body": [
+    {
+      "type": "Container",
+      "bleed": true,
+      "items": [
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "50px",
+              "items": [
+                {
+                  "type": "Image",
+                  "url": "${avatar}",
+                  "width": "50px",
+                  "style": "Person",
+                  "altText": "${requested_by} photo"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "ColumnSet",
+                  "columns": [
+                    {
+                      "type": "Column",
+                      "width": "stretch",
+                      "items": [
+                        {
+                          "type": "TextBlock",
+                          "text": "${requested_by}",
+                          "wrap": true,
+                          "fontType": "Default",
+                          "size": "Medium"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Column",
+                      "width": "auto",
+                      "spacing": "Small",
+                      "items": [
+                        {
+                          "type": "TextBlock",
+                          "text": "${now}",
+                          "wrap": true,
+                          "isSubtle": true
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "Container",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "${title}",
+                      "wrap": true,
+                      "size": "Large",
+                      "fontType": "Default",
+                      "spacing": "None"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "wrap": true,
+                      "spacing": "None",
+                      "size": "Medium",
+                      "text": "${description}"
+                    },
+                    {
+                      "type": "ColumnSet",
+                      "columns": [
+                        {
+                          "type": "Column",
+                          "width": "auto",
+                          "items": [
+                            {
+                              "type": "Image",
+                              "url": "${thumbnail}",
+                              "width": "20px"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "Column",
+                          "width": "stretch",
+                          "items": [
+                            {
+                              "type": "TextBlock",
+                              "text": "Submitted via ${integration}",
+                              "wrap": true
+                            }
+                          ],
+                          "spacing": "Small"
+                        }
+                      ],
+                      "spacing": "Small"
+                    }
+                  ],
+                  "style": "emphasis",
+                  "bleed": true
+                }
+              ],
+              "verticalContentAlignment": "Center"
+            }
+          ],
+          "spacing": "Large",
+          "selectAction": {
+            "type": "Action.OpenUrl",
+            "url": "https://www.adenin.com/pocdef"
+          }
+        }
+      ]
+    },
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": "50px"
+        },
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "ActionSet",
+              "actions": [
+                {
+                  "type": "Action.Submit",
+                  "title": "Quick Approve",
+                  "style": "positive"
+                },
+                {
+                  "type": "Action.ToggleVisibility",
+                  "title": "Decline",
+                  "targetElements": [
+                    {
+                      "elementId": "denial-comment",
+                      "isVisible": true
+                    },
+                    {
+                      "elementId": "details-box",
+                      "isVisible": false
+                    }
+                  ]
+                },
+                {
+                  "type": "Action.ToggleVisibility",
+                  "iconUrl": "https://img.icons8.com/material/48/000000/menu-2--v1.png",
+                  "targetElements": [
+                    {
+                      "elementId": "denial-comment",
+                      "isVisible": false
+                    },
+                    {
+                      "elementId": "details-box",
+                      "isVisible": true
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "backgroundImage": {
+            "horizontalAlignment": "Right"
+          }
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "items": [
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "Input.Text",
+                  "placeholder": "Please enter a reason for the denial...",
+                  "isMultiline": true,
+                  "id": "denial-reason"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "auto",
+              "items": [
+                {
+                  "type": "ActionSet",
+                  "actions": [
+                    {
+                      "type": "Action.Submit",
+                      "title": "Submit"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "isVisible": false,
+      "bleed": true,
+      "style": "emphasis",
+      "id": "denial-comment"
+    },
+    {
+      "type": "Container",
+      "items": [
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "50px"
+            },
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "ActionSet",
+                  "actions": [
+                    {
+                      "type": "Action.OpenUrl",
+                      "title": "Message ${take(split(requested_by, \u0027 \u0027), 1)}",
+                      "url": "${link}"
+                    },
+                    {
+                      "type": "Action.OpenUrl",
+                      "title": "View details",
+                      "url": "${link}"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "isVisible": false,
+      "id": "details-box"
+    }
+  ],
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.2"
+}
 ```
