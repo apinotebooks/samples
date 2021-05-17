@@ -100,9 +100,83 @@ All
 
 ## Features
 
-Notifications
+Notification
 List
-
 ```json adaptive-card
-
+{
+  "type": "AdaptiveCard",
+  "body": [
+    {
+      "type": "Container",
+      "bleed": true,
+      "items": [
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "auto",
+              "items": [
+                {
+                  "type": "Image",
+                  "url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADYAAAA2CAMAAAHMnKp5AAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAANqADAAQAAAABAAAANgAAAADQiwyeAAAATlBMVEUAAAD///\u002Bq/1W/v0CTwR\u002BOwRyOvhiPvxyNwBuNvxqNvxmMvRqNvhiNvhmNvhiMvRmMvhiNvhmMvRmMvhiNvhiNvhmMvRmMvRmNvhiMvRh6zEY/AAAAGXRSTlMAAQMEIS0/QEFXZ22UmJ22v8va3t/q7Pn6s24kUwAAAYxJREFUGBmdwQmCojAARcGXHvYdlMC//0UHwYYoxBaqmNxyJnoANOOuGblmoBmgCZPQ8qAH0MygBVqgGaAJs1oLHmptIJQLKxfIEQFasTCaRKzKoTE8aRHwoF8FoA10ciAXciEXciEXaJNAphWTWAvLopLU4zCdVimuUW8ynkYdiJkYHWsB\u002BVSU8mKQF428MPLpIZUHk0BHLItCOz9sWjkS3pi8scOtDNlJteoMrkAvajaZ3oz8KrTHItaBkZkO1UxaHTNg5NFBJR\u002BQV4i8SuR1R14D8rLIq0FeOb18DJF8AHmkQKJjPFgdCZjpQMbin3YKVlavYhyJHC1vol6LyuBjoqrXi76KDB8lrTzaBI/Y6iMbs/NT6AvFDy8yfSljE1h9zQY8JTolYZbqpJRJpNMiML1O6w25LshpdEGD1QWWQRcM3HXBjVIXlIS6IIRKp1WA6XRSZ5iYVqe0hkWtE2pW8agvjTGuQl8peJeN\u002BsOYcSSo9UEd4GXSTge61PAnE\u002BZlc7fDYG9NmYeGvf\u002B0pt5KFMhV9AAAAABJRU5ErkJggg==",
+                  "width": "18px",
+                  "$when": "${color == \u0022green\u0022}"
+                },
+                {
+                  "type": "Image",
+                  "backgroundColor": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADYAAAA2CAMAAAHMnKp5AAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAANqADAAQAAAABAAAANgAAAADQiwyeAAAATlBMVEUAAAD/////VVX/QEDgPgjdPgbbPQTbPATcPwTcPgPcOwLcPQLbPALaPALbPALbPAHbPAHbOwHbPAHaPAHaOwHbPAHaOwHaOwHaOwHaOwG\u002BMBvqAAAAGXRSTlMAAQMEIS0/QEFXZ22UmJ22v8va3t/q7Pn6s24kUwAAAYxJREFUGBmdwQmCojAARcGXHvYdlMC//0UHwYYoxBaqmNxyJnoANOOuGblmoBmgCZPQ8qAH0MygBVqgGaAJs1oLHmptIJQLKxfIEQFasTCaRKzKoTE8aRHwoF8FoA10ciAXciEXciEXaJNAphWTWAvLopLU4zCdVimuUW8ynkYdiJkYHWsB\u002BVSU8mKQF428MPLpIZUHk0BHLItCOz9sWjkS3pi8scOtDNlJteoMrkAvajaZ3oz8KrTHItaBkZkO1UxaHTNg5NFBJR\u002BQV4i8SuR1R14D8rLIq0FeOb18DJF8AHmkQKJjPFgdCZjpQMbin3YKVlavYhyJHC1vol6LyuBjoqrXi76KDB8lrTzaBI/Y6iMbs/NT6AvFDy8yfSljE1h9zQY8JTolYZbqpJRJpNMiML1O6w25LshpdEGD1QWWQRcM3HXBjVIXlIS6IIRKp1WA6XRSZ5iYVqe0hkWtE2pW8agvjTGuQl8peJeN\u002BsOYcSSo9UEd4GXSTge61PAnE\u002BZlc7fDYG9NmYeGvf\u002B0pt5KFMhV9AAAAABJRU5ErkJggg==",
+                  "url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADYAAAA2CAMAAAHMnKp5AAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAANqADAAQAAAABAAAANgAAAADQiwyeAAAATlBMVEUAAAD/////VVX/QEDgPgjdPgbbPQTbPATcPwTcPgPcOwLcPQLbPALaPALbPALbPAHbPAHbOwHbPAHaPAHaOwHbPAHaOwHaOwHaOwHaOwG\u002BMBvqAAAAGXRSTlMAAQMEIS0/QEFXZ22UmJ22v8va3t/q7Pn6s24kUwAAAYxJREFUGBmdwQmCojAARcGXHvYdlMC//0UHwYYoxBaqmNxyJnoANOOuGblmoBmgCZPQ8qAH0MygBVqgGaAJs1oLHmptIJQLKxfIEQFasTCaRKzKoTE8aRHwoF8FoA10ciAXciEXciEXaJNAphWTWAvLopLU4zCdVimuUW8ynkYdiJkYHWsB\u002BVSU8mKQF428MPLpIZUHk0BHLItCOz9sWjkS3pi8scOtDNlJteoMrkAvajaZ3oz8KrTHItaBkZkO1UxaHTNg5NFBJR\u002BQV4i8SuR1R14D8rLIq0FeOb18DJF8AHmkQKJjPFgdCZjpQMbin3YKVlavYhyJHC1vol6LyuBjoqrXi76KDB8lrTzaBI/Y6iMbs/NT6AvFDy8yfSljE1h9zQY8JTolYZbqpJRJpNMiML1O6w25LshpdEGD1QWWQRcM3HXBjVIXlIS6IIRKp1WA6XRSZ5iYVqe0hkWtE2pW8agvjTGuQl8peJeN\u002BsOYcSSo9UEd4GXSTge61PAnE\u002BZlc7fDYG9NmYeGvf\u002B0pt5KFMhV9AAAAABJRU5ErkJggg==",
+                  "width": "18px",
+                  "$when": "${color != \u0022green\u0022}"
+                }
+              ],
+              "verticalContentAlignment": "Center"
+            },
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "${title}",
+                  "wrap": true,
+                  "weight": "Bolder"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "${status} as of ${int(formatDateTime(date,\u0027hh\u0027)) - int(formatDateTime(utcNow(),\u0027hh\u0027))} hours ago",
+                  "wrap": true,
+                  "isSubtle": true,
+                  "spacing": "Small"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "auto",
+              "items": [
+                {
+                  "type": "ActionSet",
+                  "actions": [
+                    {
+                      "type": "Action.Submit",
+                      "title": "\u2715"
+                    }
+                  ]
+                }
+              ],
+              "backgroundImage": {
+                "verticalAlignment": "Center"
+              },
+              "verticalContentAlignment": "Center"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.2"
+}
 ```
