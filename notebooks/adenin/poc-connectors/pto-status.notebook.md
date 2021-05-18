@@ -15,10 +15,6 @@ async function handleRequest(request) {
     response.linkLabel = 'Request PTO';
     response.actionable = false;
     response.thumbnail = 'https://www.adenin.com/assets/images/wp-images/logo/workday.svg';
-
-    response._card = {
-      type: 'status-list'
-    };
   
     return response;
 }
