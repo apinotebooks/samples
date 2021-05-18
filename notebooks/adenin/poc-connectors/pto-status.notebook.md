@@ -1,21 +1,16 @@
 ```javascript connector
 async function handleRequest(request) {
 
-    let items = [
-        {
-            title: 'Leave status',
+    var response = {            
             description: '200 hours total, 80 hours remaining, 12 hours planned',
             total_allowance: '200',
             charitable_leave_allowance: '8',
             remaining_allowance: '80',
             planned_allowance: '12',
             remaining_public_holiday_count: '16'
-        }
-    ];
+    }    
 
-    var response = {};
-    response.items = items;
-    response.title = 'PTO Status';
+    response.title = 'PTO allowance';
     response.link = 'https://www.adenin.com/pocdef';
     response.linkLabel = 'Request PTO';
     response.actionable = false;
@@ -48,9 +43,7 @@ Get an at-a-glance view of your current personal time off allowance, including p
 
 ![logo](https://www.adenin.com/assets/images/wp-images/logo/workday.svg)
 
-## Features
-
-List
+## 
 
 ```json adaptive-card
 {
