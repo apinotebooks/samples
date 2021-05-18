@@ -65,7 +65,7 @@ async function handleRequest(request) {
     } 
 
     response._card = {
-      type: 'my-approvals'
+      type: 'status-list'
     };
   
     return response;
