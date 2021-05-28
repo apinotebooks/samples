@@ -8,7 +8,7 @@ _AccessTokenServiceEndpoint: https://localhost:44367/oauth2/token
 
 async function handleRequest(request) {
 
-  var response = await fetchJSON(`https://localhost:44367/api/featurelog/FeatureUsage`, { 
+  var response = await fetchJSON(`https://localhost:44367/api/featureusage/tenantDaily?startDate=2021-04-01&tenantId=4`, { 
     'credentials': 'omit',
     headers: {    
       'Authorization': 'Bearer ' + request._token,

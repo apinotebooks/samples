@@ -2,7 +2,7 @@
 
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
 
-  <div x-data="{users: sourceData}"
+  <div x-data="{users: []}"
        x-init="fetch('https://jsonplaceholder.typicode.com/users')
                       .then(response => response.json())
                       .then(data => users = data)">
