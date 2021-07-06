@@ -31,7 +31,7 @@ async function handleRequest(request) {
     if (!items[i].color) {
       if (items[i].status == 'Available') {
         items[i].color = "green";
-      } elseif items[i].status == "Not Responding" {
+      } else if (items[i].status == "Not Responding") {
         items[i].color = "red";
       } else {
         items[i].color = "grey";
