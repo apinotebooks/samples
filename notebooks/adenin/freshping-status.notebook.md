@@ -31,12 +31,14 @@ async function handleRequest(request) {
     if (!items[i].color) {
       if (items[i].status == 'Available') {
         items[i].color = "green";
-      } else {
+      } elseif items[i].status == "Not Responding" {
         items[i].color = "red";
+      } else {
+        items[i].color = "grey";
       }
     }
 
-    if (items[i].description == 'Not Responding') {
+    if (items[i].status == 'Not Responding') {
         serversDown.push(items[i]);
         downCount++;
     }
