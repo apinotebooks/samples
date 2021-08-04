@@ -22,6 +22,14 @@ Shows the current time in UTC
 2. Current time
 3. UTC time
 
+## Configuration
+- defaultHeight 1
+- defaultWidth 2
+- minHeight 1
+- maxHeight 3
+- minWidth 1
+- maxWidth 3
+
 ## Logo
 
 ![logo](https://www.adenin.com/assets/images/identity/icon_digital_assistant.svg)
