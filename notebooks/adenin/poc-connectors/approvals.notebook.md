@@ -73,7 +73,9 @@ async function handleRequest(request) {
 ```
 
 # Approvals
+
 See and manage pending approvals from your employees
+
 ## Utterances
 
 1. What are my (latest|new|pending) approvals?
@@ -82,7 +84,7 @@ See and manage pending approvals from your employees
 
 ## Logo
 
-![logo](https://www.adenin.com/assets/images/identity/Icon_Digital_Assistant.svg)
+![logo](https://www.adenin.com/assets/images/identity/icon_digital_assistant.svg)
 
 ## Audience
 
@@ -232,7 +234,8 @@ List
                 {
                   "type": "Action.Submit",
                   "title": "Quick Approve",
-                  "style": "positive"
+                  "style": "positive",
+                  "id": "_success1_You_have_approved_this_request"
                 },
                 {
                   "type": "Action.ToggleVisibility",
@@ -298,7 +301,8 @@ List
                   "actions": [
                     {
                       "type": "Action.Submit",
-                      "title": "Submit"
+                      "title": "Submit",
+                      "id": "_error_Your_denial_was_submitted"
                     }
                   ]
                 }

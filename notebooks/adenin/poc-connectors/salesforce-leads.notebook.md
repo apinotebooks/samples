@@ -309,7 +309,8 @@ List
                   "actions": [
                     {
                       "type": "Action.Submit",
-                      "title": "Comment"
+                      "title": "Comment",
+                      "id": "_success1_Your_comment_has_been_posted"
                     }
                   ]
                 }
@@ -351,7 +352,8 @@ List
                     {
                       "type": "Action.Submit",
                       "title": "Send",
-                      "style": "positive"
+                      "style": "positive",
+                      "id": "_success2_Your_message_was_sent"
                     }
                   ]
                 }
@@ -417,7 +419,8 @@ List
                   "actions": [
                     {
                       "type": "Action.Submit",
-                      "title": "Submit"
+                      "title": "Submit",
+                      "id": "_success3_The_status_was_updated"
                     }
                   ]
                 }

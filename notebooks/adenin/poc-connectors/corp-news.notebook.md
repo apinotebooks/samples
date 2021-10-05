@@ -249,7 +249,8 @@ List
           "actions": [
             {
               "type": "Action.Submit",
-              "title": "Submit"
+              "title": "Submit",
+              "id": "_success_Your_comment_was_posted"
             }
           ]
         }

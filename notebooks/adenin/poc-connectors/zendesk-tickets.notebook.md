@@ -87,9 +87,9 @@ Pin the Open Tickets Card to your Board to keep track of your latest open ticket
 
 ## Utterances
 
-1. Show (me) (my) open Freshdesk (cases|tickets|issues)
-2. Do I have any (open|due|assigned) Freshdesk (cases|tickets|issues)?
-3. Show me (my) (open|due|assigned) Freshdesk (cases|tickets|issues)
+1. Show (me) (my) open Zendesk (cases|tickets|issues)
+2. Do I have any (open|due|assigned) Zendesk (cases|tickets|issues)?
+3. Show me (my) (open|due|assigned) Zendesk (cases|tickets|issues)
 
 ## Logo
 
@@ -295,7 +295,8 @@ List
           "actions": [
             {
               "type": "Action.Submit",
-              "title": "Send message"
+              "title": "Send message",
+              "id": "_success1_Your_message_was_sent"
             }
           ]
         }
@@ -332,7 +333,8 @@ List
                   "actions": [
                     {
                       "type": "Action.Submit",
-                      "title": "Comment"
+                      "title": "Comment",
+                      "id": "_success2_Your_comment_was_posted"
                     }
                   ]
                 }
@@ -373,7 +375,8 @@ List
                   "actions": [
                     {
                       "type": "Action.Submit",
-                      "title": "Close case"
+                      "title": "Close case",
+                      "id": "_success3_You_have_closed_this_case"
                     }
                   ]
                 }

@@ -39,8 +39,6 @@ Get an at-a-glance view of your current personal time off allowance, including p
 
 ![logo](https://www.adenin.com/assets/images/wp-images/logo/workday.svg)
 
-## 
-
 ```json adaptive-card
 {
   "type": "AdaptiveCard",
@@ -269,7 +267,8 @@ Get an at-a-glance view of your current personal time off allowance, including p
           "actions": [
             {
               "type": "Action.Submit",
-              "title": "Submit PTO request"
+              "title": "Submit PTO request",
+              "id": "_success_Your_PTO_request_was_submitted"
             }
           ]
         }

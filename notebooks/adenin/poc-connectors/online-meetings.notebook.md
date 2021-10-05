@@ -272,7 +272,8 @@ List
                   "actions": [
                     {
                       "type": "Action.Submit",
-                      "title": "Submit"
+                      "title": "Submit",
+                      "id": "_success_Your_attendance_has_been_updated"
                     }
                   ]
                 }
