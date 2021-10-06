@@ -126,9 +126,9 @@ List
                   "items": [
                     {
                       "type": "Image",
-                      "url": "https://images.generated.photos/DgVY_QdGVjICaywq3IIaleHQW_1tt7_i3RpD2zXtuPI/rs:fit:512:512/Z3M6Ly9nZW5lcmF0/ZWQtcGhvdG9zL3Yz/XzAzMTY0MjRfMDMx/MTY4N18wNTc0ODcy/LmpwZw.jpg",
-                      "size": "Small",
-                      "style": "Person"
+                      "url": "https://demo.adenin.com/dm/50/1015122-picture.jpg.jpg?",
+                      "style": "Person",
+                      "width": "30px"
                     }
                   ]
                 },
@@ -138,14 +138,17 @@ List
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "**Stefanie Wittacker** posted on Internal Comms Blog",
+                      "text": "**Anna Larsen** posted on Internal Comms Blog",
                       "size": "Small",
                       "wrap": true,
                       "maxLines": 3
                     }
-                  ]
+                  ],
+                  "verticalContentAlignment": "Center",
+                  "spacing": "Small"
                 }
-              ]
+              ],
+              "spacing": "Small"
             }
           ]
         },
@@ -205,7 +208,8 @@ List
               "weight": "Bolder",
               "id": "15Likes"
             }
-          ]
+          ],
+          "spacing": "Small"
         },
         {
           "type": "Column",
@@ -242,15 +246,15 @@ List
       "items": [
         {
           "type": "Input.Text",
-          "placeholder": "What do you think?"
+          "placeholder": "What do you think?",
+          "id": "comment-input"
         },
         {
           "type": "ActionSet",
           "actions": [
             {
               "type": "Action.Submit",
-              "title": "Submit",
-              "id": "_success_Your_comment_was_posted"
+              "title": "Submit"
             }
           ]
         }
