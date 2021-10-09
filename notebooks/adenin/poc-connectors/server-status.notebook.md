@@ -166,7 +166,8 @@ List
                   "actions": [
                     {
                       "type": "Action.Submit",
-                      "title": "\u2715"
+                      "title": "\u2715",
+                      "id": "_success_Status_for_${title}_reset"
                     }
                   ]
                 }
