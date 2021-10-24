@@ -10,7 +10,7 @@ async function handleRequest(request) {
             remaining_public_holiday_count: '16'
     }    
 
-    response.title = 'PTO allowance';
+    response.title = 'PTO Request';
     response.link = 'https://www.adenin.com/pocdef';
     response.linkLabel = 'Request PTO';
     response.actionable = false;
@@ -21,9 +21,9 @@ async function handleRequest(request) {
 
 ```
 
-# PTO allowance
+# Request PTO 
 
-See your current personal time off allowance, including planned time
+Submit a personal time off (PTO) request.
 
 ## Benefits
 
@@ -31,9 +31,8 @@ Get an at-a-glance view of your current personal time off allowance, including p
 
 ## Utterances
 
-1. Show (me) (my) (PTO|leave|time off) (allowance|status)
-2. Show (me) (my) remaining (PTO|leave|time off)
-3. How much PTO do I have (left)?
+1. I want to request (PTO|time off)
+2. I want to submit a  (PTO|time off) request
 
 ## Logo
 
@@ -161,24 +160,95 @@ Get an at-a-glance view of your current personal time off allowance, including p
       ]
     },
     {
-      "type": "ActionSet",
-      "actions": [
+      "type": "Container",
+      "bleed": true,
+      "style": "emphasis",
+      "items": [
         {
-          "type": "Action.Submit",
-          "title": "Request PTO",
-          "data": {
-            "msteams": {
-              "type": "imBack",
-              "value": "I want to request PTO"
-            }
-          }
+          "type": "TextBlock",
+          "text": "From",
+          "wrap": true,
+          "size": "Small"
         },
         {
-          "type": "Action.OpenUrl",
-          "title": "PTO help",
-          "url": "https://www.adenin.com/pocdef"
+          "type": "Input.Date",
+          "spacing": "None",
+          "id": "from-date"
+        },
+        {
+          "type": "TextBlock",
+          "text": "To",
+          "wrap": true,
+          "size": "Small",
+          "spacing": "Small"
+        },
+        {
+          "type": "Input.Date",
+          "spacing": "None",
+          "id": "to-date"
+        },
+        {
+          "type": "TextBlock",
+          "text": "Type of PTO",
+          "wrap": true,
+          "size": "Small",
+          "spacing": "Small"
+        },
+        {
+          "type": "Input.ChoiceSet",
+          "choices": [
+            {
+              "title": "Annual Leave",
+              "value": "Choice 1"
+            },
+            {
+              "title": "Parental Leave",
+              "value": "Choice 2"
+            },
+            {
+              "title": "Compassionate Leave",
+              "value": "Choice 3"
+            },
+            {
+              "title": "Jury Duty",
+              "value": "Choice 4"
+            },
+            {
+              "title": "Sick Leave",
+              "value": "Choice 5"
+            }
+          ],
+          "placeholder": "Placeholder text",
+          "spacing": "Small",
+          "style": "expanded",
+          "id": "type-of-pto"
+        },
+        {
+          "type": "TextBlock",
+          "text": "Comment",
+          "wrap": true,
+          "spacing": "Small",
+          "size": "Small"
+        },
+        {
+          "type": "Input.Text",
+          "placeholder": "Optional",
+          "spacing": "None",
+          "isMultiline": true,
+          "id": "comment"
+        },
+        {
+          "type": "ActionSet",
+          "actions": [
+            {
+              "type": "Action.Submit",
+              "title": "Submit PTO request",
+              "id": "_success_Your_PTO_request_was_submitted"
+            }
+          ]
         }
-      ]
+      ],
+      "id": "request-pto"
     }
   ],
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
