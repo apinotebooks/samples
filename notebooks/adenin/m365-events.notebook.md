@@ -90,16 +90,11 @@ async function handleRequest(request, context) {
     item.description = raw.bodyPreview.replace(/\r/g, "");
     item.description = item.description.replace(/\n/g, "<br/>");
 
-    item.startDate = dateConvertTimezone(
-      raw.start.dateTime,
-      raw.start.timeZone,
-      timeZone
-    );
-    item.endDate = dateConvertTimezone(
-      raw.end.dateTime,
-      raw.end.timeZone,
-      timeZone
-    );
+    const startUtc = dateStringParse(raw.start.dateTime, raw.start.timeZone);
+    const endUtc = dateStringParse(raw.end.dateTime, raw.end.timeZone);
+
+    item.startDate = dateConvertTimezone(startUtc, timeZone);
+    item.endDate = dateConvertTimezone(endUtc, timeZone);
 
     const when = humanizeRelative(item.startDate);
     const duration = humanizeDuration(item.startDate, item.endDate);
@@ -270,12 +265,12 @@ async function handleRequest(request, context) {
 
     const item = convertItem(raw);
 
-    const startTime = new Date(
-      dateConvertTimezone(raw.start.dateTime, raw.start.timeZone, timeZone)
-    );
-    const endTime = new Date(
-      dateConvertTimezone(raw.end.dateTime, raw.end.timeZone, timeZone)
-    );
+    const startUtc = dateStringParse(raw.start.dateTime, raw.start.timeZone);
+    const endUtc = dateStringParse(raw.end.dateTime, raw.end.timeZone);
+
+    const startTime = new Date(dateConvertTimezone(startUtc, timeZone));
+    const endTime = new Date(dateConvertTimezone(endUtc, timeZone));
+
     const halfAnHourAgo = new Date().setMinutes(now.getMinutes() - 30);
 
     if (
