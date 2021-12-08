@@ -9,22 +9,24 @@ ConnectorName: office-365
 
 ```javascript connector
 async function handleRequest(request, context) {
-  const timeZone = (context && context.UserTimezone) ? context.UserTimezone : 'system';
+  const timeZone =
+    context && context.UserTimezone ? context.UserTimezone : "system";
 
   const now = new Date();
 
-  const urlRegex = /(https?)\:\/\/[A-Za-z0-9\.\-]+(\/[A-Za-z0-9\?\&\=;\+!'\(\)\*\-\._~%]*)*/gi;
+  const urlRegex =
+    /(https?)\:\/\/[A-Za-z0-9\.\-]+(\/[A-Za-z0-9\?\&\=;\+!'\(\)\*\-\._~%]*)*/gi;
   const specialCharRegex = /[^a-zA-z\s]/;
 
   const stripSpecialChars = (input) => {
-    if (!input) return '';
+    if (!input) return "";
     const index = input.search(specialCharRegex);
     if (index === -1) return input;
     return input.substring(0, index).trim();
   };
 
   const parseUrl = (text) => {
-    text = text.replace(/\n|\r/g, ' ');
+    text = text.replace(/\n|\r/g, " ");
     const matches = text.match(urlRegex);
 
     if (!matches || !matches.length) return null;
@@ -32,12 +34,12 @@ async function handleRequest(request, context) {
     for (let i = 0; i < matches.length; i++) {
       const match = matches[i];
       if (
-        match.includes('webex') ||
-        match.includes('gotomeet') ||
-        match.includes('gotomeeting') ||
-        match.includes('zoom') ||
-        match.includes('skype') ||
-        match.includes('teams')
+        match.includes("webex") ||
+        match.includes("gotomeet") ||
+        match.includes("gotomeeting") ||
+        match.includes("zoom") ||
+        match.includes("skype") ||
+        match.includes("teams")
       ) {
         return match;
       }
@@ -46,12 +48,12 @@ async function handleRequest(request, context) {
   };
 
   const avatarLink = (text, email) => {
-    const baseUrl = 'https://app.adenin.com/';
+    const baseUrl = "https://app.adenin.com/";
     if (!text) return `${baseUrl}avatar`;
 
     if (text.length > 2) {
-      const split = text.split(' ');
-      text = '';
+      const split = text.split(" ");
+      text = "";
 
       for (let i = 0; i < split.length && i < 3; i++) {
         if (split[i] && split[i][0]) text += split[i][0];
@@ -60,13 +62,20 @@ async function handleRequest(request, context) {
 
     const platformAvatar = `${baseUrl}avatar/${encodeURIComponent(text)}`;
 
-    if (!email || (typeof email !== 'string' && !(email instanceof String)) || !/^[ -~]+$/.test(text)) return platformAvatar;
+    if (
+      !email ||
+      (typeof email !== "string" && !(email instanceof String)) ||
+      !/^[ -~]+$/.test(text)
+    )
+      return platformAvatar;
 
-    const gravatarBaseUrl = 'https://www.gravatar.com/avatar/';
+    const gravatarBaseUrl = "https://www.gravatar.com/avatar/";
 
     email = email.toLowerCase().trim();
     const hash = MD5(email);
-    return `${gravatarBaseUrl}${hash}?s=192&d=${encodeURIComponent(platformAvatar)}`;
+    return `${gravatarBaseUrl}${hash}?s=192&d=${encodeURIComponent(
+      platformAvatar
+    )}`;
   };
 
   const convertItem = (raw) => {
@@ -75,29 +84,41 @@ async function handleRequest(request, context) {
       title: raw.subject,
       link: raw.webLink,
       isCancelled: raw.isCancelled,
-      isRecurring: raw.recurrence ? true : false
+      isRecurring: raw.recurrence ? true : false,
     };
 
-    item.description = raw.bodyPreview.replace(/\r/g, '');
-    item.description = item.description.replace(/\n/g, '<br/>');
+    item.description = raw.bodyPreview.replace(/\r/g, "");
+    item.description = item.description.replace(/\n/g, "<br/>");
 
-    item.startDate = ts(raw.start.dateTime, raw.start.timeZone, timeZone);
-    item.endDate = ts(raw.end.dateTime, raw.end.timeZone, timeZone);
+    item.startDate = dateConvertTimezone(
+      raw.start.dateTime,
+      raw.start.timeZone,
+      timeZone
+    );
+    item.endDate = dateConvertTimezone(
+      raw.end.dateTime,
+      raw.end.timeZone,
+      timeZone
+    );
 
     const when = humanizeRelative(item.startDate);
     const duration = humanizeDuration(item.startDate, item.endDate);
 
-    if (duration.includes('day')) {
+    if (duration.includes("day")) {
       item.isAllDay = true;
       item.when = "Now";
     } else {
       item.when = when;
     }
 
-    if (raw.location && raw.location.coordinates && raw.location.coordinates.latitude) {
+    if (
+      raw.location &&
+      raw.location.coordinates &&
+      raw.location.coordinates.latitude
+    ) {
       item.location = {
         link: `https://www.google.com/maps/search/?api=1&query=${raw.location.coordinates.latitude},${raw.location.coordinates.longitude}`,
-        title: raw.location.displayName
+        title: raw.location.displayName,
       };
     } else if (raw.location.displayName && !raw.onlineMeetingUrl) {
       const url = parseUrl(raw.location.displayName);
@@ -119,13 +140,15 @@ async function handleRequest(request, context) {
     if (item.onlineMeetingUrl) {
       // parse out which type of meeting
       const providers = [
-        { "name": "Webex", "match": "webex" },
-        { "name": "GoToMeeting", "match": "gotomeet" },
-        { "name": "Zoom", "match": "zoom" },
-        { "name": "Skype", "match": "skype" },
-        { "name": "Microsoft Teams", "match": "teams" },
+        { name: "Webex", match: "webex" },
+        { name: "GoToMeeting", match: "gotomeet" },
+        { name: "Zoom", match: "zoom" },
+        { name: "Skype", match: "skype" },
+        { name: "Microsoft Teams", match: "teams" },
       ];
-      const provider = providers.find((p) => (item.onlineMeetingUrl.includes(p.match)));
+      const provider = providers.find((p) =>
+        item.onlineMeetingUrl.includes(p.match)
+      );
       item.meetingType = provider.name;
     }
 
@@ -135,31 +158,42 @@ async function handleRequest(request, context) {
 
     const organizerName = stripSpecialChars(raw.organizer.emailAddress.name);
 
-    item.thumbnail = avatarLink(organizerName, raw.organizer.emailAddress.address);
+    item.thumbnail = avatarLink(
+      organizerName,
+      raw.organizer.emailAddress.address
+    );
     //item.thumbnail = 'https://www.adenin.com/assets/images/generated_photos/5e6801626d3b380006d3b82f-l.jpg';
     item.imageIsAvatar = true;
     item.organizer = {
       avatar: item.thumbnail,
       email: raw.organizer.emailAddress.address,
-      name: organizerName
+      name: organizerName,
     };
 
     item.attendees = [];
 
     if (raw.attendees.length > 0) {
       for (let j = 0; j < raw.attendees.length; j++) {
-        const attendeeName = stripSpecialChars(raw.attendees[j].emailAddress.name);
+        const attendeeName = stripSpecialChars(
+          raw.attendees[j].emailAddress.name
+        );
         const attendee = {
           email: raw.attendees[j].emailAddress.address,
           name: attendeeName,
-          avatar: avatarLink(attendeeName, raw.attendees[j].emailAddress.address)
+          avatar: avatarLink(
+            attendeeName,
+            raw.attendees[j].emailAddress.address
+          ),
           //avatar: 'https://www.adenin.com/assets/images/generated_photos/5e6801626d3b380006d3b82f-l.jpg'
         };
 
         if (attendee.email === item.organizer.email) {
-          attendee.response = 'organizer';
-        } else if (raw.attendees[j].status.response !== 'none') {
-          attendee.response = raw.attendees[j].status.response === 'accepted' ? 'accepted' : 'declined';
+          attendee.response = "organizer";
+        } else if (raw.attendees[j].status.response !== "none") {
+          attendee.response =
+            raw.attendees[j].status.response === "accepted"
+              ? "accepted"
+              : "declined";
         }
 
         item.attendees.push(attendee);
@@ -169,61 +203,37 @@ async function handleRequest(request, context) {
     }
 
     switch (raw.responseStatus.response) {
-      case 'none':
+      case "none":
         break;
-      case 'organizer':
+      case "organizer":
         item.response = {
-          status: 'organizer'
+          status: "organizer",
         };
         break;
       default:
         item.response = {
-          status: raw.responseStatus.response === 'accepted' ? 'accepted' : 'declined',
-          date: raw.responseStatus.time
+          status:
+            raw.responseStatus.response === "accepted"
+              ? "accepted"
+              : "declined",
+          date: raw.responseStatus.time,
         };
     }
 
     return item;
   };
 
-  function toISO8601(date) {
-    const tzo = -date.getTimezoneOffset(),
-      dif = tzo >= 0 ? "+" : "-",
-      pad = function (num) {
-        const norm = Math.floor(Math.abs(num));
-        return (norm < 10 ? "0" : "") + norm;
-      };
-
-    return encodeURIComponent(
-      date.getFullYear() +
-      "-" +
-      pad(date.getMonth() + 1) +
-      "-" +
-      pad(date.getDate()) +
-      "T" +
-      pad(date.getHours()) +
-      ":" +
-      pad(date.getMinutes()) +
-      ":" +
-      pad(date.getSeconds()) +
-      dif +
-      pad(tzo / 60) +
-      ":" +
-      pad(tzo % 60)
-    );
-  }
-
   let dayStart = new Date();
   dayStart.setHours(0);
   dayStart.setMinutes(0);
   dayStart.setSeconds(0);
-  dayStart = toISO8601(dayStart);
+  dayStart = dateToIsoUri(dayStart);
 
   let dayEnd = new Date();
   dayEnd.setHours(23);
   dayEnd.setMinutes(59);
   dayEnd.setSeconds(59);
-  dayEnd = toISO8601(dayEnd);
+  dayEnd = dateToIsoUri(dayEnd);
 
   const json = await fetchJSON(
     `https://graph.microsoft.com/v1.0/me/calendarView?startDateTime=${dayStart}&endDateTime=${dayEnd}`,
@@ -260,11 +270,18 @@ async function handleRequest(request, context) {
 
     const item = convertItem(raw);
 
-    const startTime = new Date(ts(raw.start.dateTime, raw.start.timeZone, timeZone));
-    const endTime = new Date(ts(raw.end.dateTime, raw.end.timeZone, timeZone));
-    const halfAnHourAgo = (new Date()).setMinutes(now.getMinutes() - 30);
+    const startTime = new Date(
+      dateConvertTimezone(raw.start.dateTime, raw.start.timeZone, timeZone)
+    );
+    const endTime = new Date(
+      dateConvertTimezone(raw.end.dateTime, raw.end.timeZone, timeZone)
+    );
+    const halfAnHourAgo = new Date().setMinutes(now.getMinutes() - 30);
 
-    if (((now.getDate() == startTime.getDate()) || item.isAllDay) && endTime > halfAnHourAgo) {
+    if (
+      (now.getDate() == startTime.getDate() || item.isAllDay) &&
+      endTime > halfAnHourAgo
+    ) {
       if (endTime < now) {
         pastCount++;
         item.isPast = true;
@@ -276,7 +293,7 @@ async function handleRequest(request, context) {
     }
   }
 
-  items = items.sort((a, b) => (new Date(a.startDate)) - (new Date(b.startDate)));
+  items = items.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
 
   const value = items.length - pastCount;
 
@@ -295,17 +312,20 @@ async function handleRequest(request, context) {
       // else the first all day event goes into the notification
       first = items[pastCount];
     }
-    
-    response.description = value > 1 ? `You have ${value} events today.` : 'You have 1 event today.';
+
+    response.description =
+      value > 1 ? `You have ${value} events today.` : "You have 1 event today.";
     response.briefing = response.description;
-    
+
     if (value > allDayCount) {
-      response.briefing += ` The next is '${first.title}' ${humanizeRelative(first.startDate)}`;
+      response.briefing += ` The next is '${first.title}' ${humanizeRelative(
+        first.startDate
+      )}`;
     } else {
       response.briefing += ` The first is '${first.title}' which lasts all day`;
     }
   } else {
-    response.description = 'You have no events today.';
+    response.description = "You have no events today.";
   }
 
   return response;
@@ -338,6 +358,7 @@ All
 Notification
 
 ## Configuration
+
 - defaultHeight 2
 - minHeight 1.5
 - maxHeight 4
