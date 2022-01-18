@@ -95,6 +95,9 @@ All
 Notification
 List
 
+## Configuration
+
+
 ```json adaptive-card
 {
   "type": "AdaptiveCard",
@@ -108,12 +111,12 @@ List
           "columns": [
             {
               "type": "Column",
-              "width": "50px",
+              "width": "40px",
               "items": [
                 {
                   "type": "Image",
                   "url": "${avatar}",
-                  "width": "50px",
+                  "width": "40px",
                   "style": "Person",
                   "altText": "${requested_by} photo"
                 }
@@ -222,7 +225,7 @@ List
       "columns": [
         {
           "type": "Column",
-          "width": "50px"
+          "width": "40px"
         },
         {
           "type": "Column",
@@ -248,20 +251,6 @@ List
                     {
                       "elementId": "details-box",
                       "isVisible": false
-                    }
-                  ]
-                },
-                {
-                  "type": "Action.ToggleVisibility",
-                  "iconUrl": "https://img.icons8.com/material/48/000000/menu-2--v1.png",
-                  "targetElements": [
-                    {
-                      "elementId": "denial-comment",
-                      "isVisible": false
-                    },
-                    {
-                      "elementId": "details-box",
-                      "isVisible": true
                     }
                   ]
                 }
