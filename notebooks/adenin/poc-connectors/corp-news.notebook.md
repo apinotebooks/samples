@@ -174,14 +174,14 @@ List
           "items": [
             {
               "type": "Image",
-              "url": "https://img.icons8.com/material-two-tone/48/000000/thumb-up--v1.png",
+              "url": "https://www.adenin.com/assets/images/app/thumb-up.png",
               "width": "20px",
               "spacing": "None",
               "id": "Like"
             },
             {
               "type": "Image",
-              "url": "data:image/svg\u002Bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iNDgiIGhlaWdodD0iNDgiCnZpZXdCb3g9IjAgMCAxNzIgMTcyIgpzdHlsZT0iIGZpbGw6IzAwMDAwMDsiPjxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0ibm9uemVybyIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIGZvbnQtZmFtaWx5PSJub25lIiBmb250LXdlaWdodD0ibm9uZSIgZm9udC1zaXplPSJub25lIiB0ZXh0LWFuY2hvcj0ibm9uZSIgc3R5bGU9Im1peC1ibGVuZC1tb2RlOiBub3JtYWwiPjxwYXRoIGQ9Ik0wLDE3MnYtMTcyaDE3MnYxNzJ6IiBmaWxsPSJub25lIj48L3BhdGg\u002BPGcgZmlsbD0iIzM0OThkYiI\u002BPHBhdGggZD0iTTE0LjMzMzMzLDcxLjY2NjY3aDQzdjcxLjY2NjY3aC00M3oiIG9wYWNpdHk9IjAuMyI\u002BPC9wYXRoPjxwYXRoIGQ9Ik01MC4xNjY2Nyw2NC41aC00M3Y4Nmg0M2M3LjkxOTE3LDAgMTQuMzMzMzMsLTYuNDE0MTcgMTQuMzMzMzMsLTE0LjMzMzMzdi01Ny4zMzMzM2MwLC03LjkxOTE3IC02LjQxNDE3LC0xNC4zMzMzMyAtMTQuMzMzMzMsLTE0LjMzMzMzek01MC4xNjY2NywxMzYuMTY2NjdoLTI4LjY2NjY3di01Ny4zMzMzM2gyOC42NjY2N3oiPjwvcGF0aD48cGF0aCBkPSJNMTUwLjUsNTcuMzMzMzNoLTQ1LjUxNTVsNi43MDgsLTMwLjc4OGMxLjA0NjMzLC00LjgwODgzIC0wLjQ0NDMzLC05LjgxODMzIC0zLjk1NiwtMTMuMjY1NWwtNi4yMDYzMywtNi4xMTMxN2wtNDcuMTc4MTcsNDcuMjY0MTdjLTIuNjgwMzMsMi42ODc1IC00LjE4NTMzLDYuMzM1MzMgLTQuMTg1MzMsMTAuMTI2NXY3MS42MDkzM2MwLDcuOTE5MTcgNi40MTQxNywxNC4zMzMzMyAxNC4zMzMzMywxNC4zMzMzM2g2NC40NDk4M2M1LjcyNjE3LDAgMTAuOTA3NjcsLTMuNDExMzMgMTMuMTcyMzMsLTguNjc4ODNsMjEuNTUwMTcsLTUwLjE3MzgzYzAuNzY2ODMsLTEuNzg0NSAxLjE2MSwtMy43MTIzMyAxLjE2MSwtNS42NTQ1di0xNC4zMjYxN2MwLC03LjkxOTE3IC02LjQxNDE3LC0xNC4zMzMzMyAtMTQuMzMzMzMsLTE0LjMzMzMzek0xNTAuNSw4NS45OTI4M2wtMjEuNTUwMTcsNTAuMTczODNoLTY0LjQ0OTgzdi03MS42MDkzM2wzMS4wMTAxNywtMzEuMDY3NWwtNC41MjkzMywyMC43OTA1bC0zLjc4NCwxNy4zODYzM2gxNy43OTQ4M2g0NS41MDgzM3oiPjwvcGF0aD48L2c\u002BPC9nPjwvc3ZnPg==",
+              "url": "https://www.adenin.com/assets/images/app/thumb-up-color.png",
               "width": "20px",
               "spacing": "None",
               "isVisible": false,
