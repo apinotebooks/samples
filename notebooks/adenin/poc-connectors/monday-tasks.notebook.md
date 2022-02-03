@@ -99,9 +99,9 @@ See an at-a-glance overview of your current tasks with valuable information like
 
 ## Utterances
 
-1. Show (me) (all) my (new|latest) (to dos|to-dos|tasks|things to do|reminders)
-2. Do I have (new|recent) (to dos|to-dos|tasks|things to do|reminders)?
-3. What are my (current) (to dos|to-dos|tasks|things to do|reminders)?
+1. Show (me) (all) (my) (new|latest) (monday|monday.com) (to dos|to-dos|tasks|things to do|reminders)
+2. Do I have (any) (new|recent) (monday|monday.com) (to dos|to-dos|tasks|things to do|reminders)?
+3. What are my (current) (monday|monday.com) (to dos|to-dos|tasks|things to do|reminders)?
 
 ## Logo
 

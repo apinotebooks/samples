@@ -6,31 +6,31 @@ async function handleRequest(request) {
         id: '123',
         title: 'HR Portal',
         link: 'https://www.adenin.com/pocdef',
-        thumbnail: 'https://www.adenin.com/assets/images/wp-images/logo/sharepoint-online.svg',
+        thumbnail: 'https://www.adenin.com/assets/images/wp-images/logo/sharepoint-online.png',
       },
       {
         id: '121',
         title: 'Office 365',
         link: 'https://www.adenin.com/pocdef',
-        thumbnail: 'https://www.adenin.com/assets/images/wp-images/logo/office-365.svg',
+        thumbnail: 'https://www.adenin.com/assets/images/wp-images/logo/office-365.png',
       },
       {
         id: '133',
         title: 'SharePoint Sites',
         link: 'https://www.adenin.com/pocdef',
-        thumbnail: 'https://www.adenin.com/assets/images/wp-images/logo/sharepoint-online.svg',
+        thumbnail: 'https://www.adenin.com/assets/images/wp-images/logo/sharepoint-online.png',
       },
       {
         id: '131',
         title: 'Asana',
         link: 'https://www.adenin.com/pocdef',
-        thumbnail: 'https://www.adenin.com/assets/images/wp-images/logo/asana.svg',
+        thumbnail: 'https://www.adenin.com/assets/images/wp-images/logo/asana.png',
       },
       {
         id: '321',
         title: 'Zoom',
         link: 'https://www.adenin.com/pocdef',
-        thumbnail: 'https://app.adenin.com/avatar/ZM',
+        thumbnail: 'https://www.adenin.com/assets/images/wp-images/logo/zoom.png',
       },
     ];
   
