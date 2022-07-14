@@ -383,7 +383,7 @@ List
         },
         {
           "type": "TextBlock",
-          "text": "$link}",
+          "text": "${link}",
           "id": "buttonUrl"
         },
         {
