@@ -97,6 +97,11 @@ List
 
 ## Configuration
 
+- card1x1 compact
+- card2x1 compact
+- maxWidth 2
+- defaultWidth 2
+- defaultHeight 2
 
 ```json adaptive-card
 {
@@ -341,6 +346,59 @@ List
       ],
       "isVisible": false,
       "id": "details-box"
+    },
+    {
+      "type": "TextBlock",
+      "text": "This card is empty",
+      "wrap": true,
+      "$when": "${count(items)==0}"
+    },
+    {
+      "type": "Container",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "${string(count(items))}",
+          "id": "counter"
+        },
+        {
+          "type": "TextBlock",
+          "text": "${description}",
+          "id": "heading"
+        },
+        {
+          "type": "TextBlock",
+          "text": "${_compact.description}",
+          "id": "description"
+        },
+        {
+          "type": "TextBlock",
+          "text": "${_compact.imageUrl}",
+          "id": "imageUrl"
+        },
+        {
+          "type": "TextBlock",
+          "text": "${linkLabel}",
+          "id": "buttonLabel"
+        },
+        {
+          "type": "TextBlock",
+          "text": "$link}",
+          "id": "buttonUrl"
+        },
+        {
+          "type": "TextBlock",
+          "text": "${_compact.buttonLabel2}",
+          "id": "buttonLabel2"
+        },
+        {
+          "type": "TextBlock",
+          "text": "${_compact.buttonUrl2}",
+          "id": "buttonUrl2"
+        }
+      ],
+      "id": "expressions",
+      "isVisible": false
     }
   ],
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
