@@ -1,82 +1,89 @@
 ```javascript connector
 async function handleRequest(request) {
+  let items = [
+    {
+      id: "Copernicus",
+      title: "Copernicus",
+      link: "https://www.adenin.com/pocdef",
+      date: "2021-05-13T08:44:30.524Z",
+      color: "green",
+      _type: "server-status",
+      status: "Operational",
+    },
+    {
+      id: "Janssen",
+      title: "Janssen",
+      link: "https://www.adenin.com/pocdef",
+      date: "2021-05-13T08:44:30.524Z",
+      color: "yellow",
+      _type: "server-status",
+      status: "Partial Outage",
+    },
+    {
+      id: "Petavius",
+      title: "Petavius",
+      link: "https://www.adenin.com/pocdef",
+      date: "2021-05-13T08:44:30.524Z",
+      color: "green",
+      _type: "server-status",
+      status: "Operational",
+    },
+    {
+      id: "Seleucus",
+      title: "Seleucus",
+      link: "https://www.adenin.com/pocdef",
+      date: "2021-05-13T08:44:30.524Z",
+      color: "red",
+      _type: "server-status",
+      status: "Major Outage",
+    },
+    {
+      id: "Vendelinus",
+      title: "Vendelinus",
+      link: "https://www.adenin.com/pocdef",
+      date: "2021-05-13T08:44:30.524Z",
+      color: "green",
+      _type: "server-status",
+      status: "Operational",
+    },
+  ];
 
-    let items = [
-      {
-        id: 'Copernicus',
-        title: 'Copernicus',
-        link: 'https://www.adenin.com/pocdef',
-        date: '2021-05-13T08:44:30.524Z',
-        color: "green",
-        _type: "server-status",
-        status: "Operational"
-      },
-      {
-        id: 'Janssen',
-        title: 'Janssen',
-        link: 'https://www.adenin.com/pocdef',
-        date: '2021-05-13T08:44:30.524Z',
-        color: "yellow",
-        _type: "server-status",
-        status: "Partial Outage"
-      },
-      {
-        id: 'Petavius',
-        title: 'Petavius',
-        link: 'https://www.adenin.com/pocdef',
-        date: '2021-05-13T08:44:30.524Z',
-        color: "green",
-        _type: "server-status",
-        status: "Operational"
-      },
-      {
-        id: 'Seleucus',
-        title: 'Seleucus',
-        link: 'https://www.adenin.com/pocdef',
-        date: '2021-05-13T08:44:30.524Z',
-        color: "red",
-        _type: "server-status",
-        status: "Major Outage"
-      },
-      {
-        id: 'Vendelinus',
-        title: 'Vendelinus',
-        link: 'https://www.adenin.com/pocdef',
-        date: '2021-05-13T08:44:30.524Z',
-        color: "green",
-        _type: "server-status",
-        status: "Operational"
-      },
-    ];
-  
-    var value = items.filter(function(item) {
-        return item['color'] == "red"
-    }).length;
-    var serversDown = items.filter(function(item) {
-        return item['color'] == "red"
-    });
-    var response = {};
-    response.items = items;
-    response.title = 'Server Status';
-    response.link = 'https://www.adenin.com/pocdef';
-    response.linkLabel = 'DevOps Dashboard';
-    response.actionable = value > 0;
-    response.thumbnail = 'https://www.adenin.com/assets/images/wp-images/logo/freshping.svg';
+  var value = items.filter(function (item) {
+    return item["color"] == "red";
+  }).length;
+  var serversDown = items.filter(function (item) {
+    return item["color"] == "red";
+  });
+  var response = {};
+  response.items = items;
+  response.title = "Server Status";
+  response.link = "https://www.adenin.com/pocdef";
+  response.linkLabel = "DevOps Dashboard";
+  response.actionable = value > 0;
+  response.thumbnail =
+    "https://www.adenin.com/assets/images/wp-images/logo/freshping.svg";
 
-    if (value > 0) {
-      response.value = value;
-      response.date = items[0].date; // items are alrady sorted ascending
-      response.description = value + ' server'+(value > 1 ? 's' : '')+' is currently down.';
-      response.briefing = 'Server <b>' + serversDown[0].title + '</b> ' + (value > 1 ? ('and' + (value - 1).toString() + 'other servers are') : 'is') + ' currently down.';
-    }
+  if (value > 0) {
+    response.value = value;
+    response.date = items[0].date; // items are alrady sorted ascending
+    response.description =
+      value + " server" + (value > 1 ? "s" : "") + " is currently down.";
+    response.briefing =
+      "Server <b>" +
+      serversDown[0].title +
+      "</b> " +
+      (value > 1
+        ? "and" + (value - 1).toString() + "other servers are"
+        : "is") +
+      " currently down.";
+  }
 
-    response._card = {
-      type: 'status-list'
-    };
-  
-    return response;
+  response._card = {
+    type: "status-list",
+  };
+
+  return response;
 }
-
 ```
 
 # Server Status
@@ -107,12 +114,21 @@ All
 Notification
 List
 
+## Configuration
+
+- card1x1 compact
+- card2x1 compact
+- maxWidth 2
+- defaultWidth 2
+- defaultHeight 2
+
 ```json adaptive-card
 {
   "type": "AdaptiveCard",
   "body": [
     {
       "type": "Container",
+      "$data": "${items}",
       "bleed": true,
       "items": [
         {
@@ -180,6 +196,59 @@ List
           ]
         }
       ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "This card is empty",
+      "wrap": true,
+      "$when": "${count(items)==0}"
+    },
+    {
+      "type": "Container",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "${string(count(items))}",
+          "id": "counter"
+        },
+        {
+          "type": "TextBlock",
+          "text": "${description}",
+          "id": "heading"
+        },
+        {
+          "type": "TextBlock",
+          "text": "${_compact.description}",
+          "id": "description"
+        },
+        {
+          "type": "TextBlock",
+          "text": "${_compact.imageUrl}",
+          "id": "imageUrl"
+        },
+        {
+          "type": "TextBlock",
+          "text": "${linkLabel}",
+          "id": "buttonLabel"
+        },
+        {
+          "type": "TextBlock",
+          "text": "${link}",
+          "id": "buttonUrl"
+        },
+        {
+          "type": "TextBlock",
+          "text": "${_compact.buttonLabel2}",
+          "id": "buttonLabel2"
+        },
+        {
+          "type": "TextBlock",
+          "text": "${_compact.buttonUrl2}",
+          "id": "buttonUrl2"
+        }
+      ],
+      "id": "expressions",
+      "isVisible": false
     }
   ],
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",

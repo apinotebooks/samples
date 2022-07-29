@@ -1,58 +1,67 @@
 ```javascript connector
 async function handleRequest(request) {
+  let items = [
+    {
+      id: "1054889",
+      title: "Grand Opening of a New Plant in China",
+      link: "https://www.adenin.com/pocdef",
+      thumbnail:
+        "https://my.digitalassistant.app/rimage/demo.adenin.com/images/t0001054889/tp1000126.jpeg?format=jpeg&width=150&height=150&mode=crop&quality=98",
+      description:
+        "On Monday, the new plant of Toaster Inc. was officially opened at Chuansha, Shanghai. ",
+      ago: "30 minutes ago",
+    },
+    {
+      id: "1054891",
+      title: "Opening of new logistics and distribution center",
+      link: "https://www.adenin.com/pocdef",
+      description:
+        "The new 10,000 square meter distribution centre in Edison, New Jersey will offer a wide range of logistics services. Together the two Toaster warehouse facilities reinforce the company’s existing network of 19 locations in the USA.",
+      thumbnail:
+        "https://my.digitalassistant.app/rimage/demo.adenin.com/images/t0001054891/tp1000126.jpeg?format=jpeg&width=150&height=150&mode=crop&quality=98",
+      ago: "1 day ago",
+    },
+    {
+      id: "1054878",
+      title: "New Wi-Fi enabled product line",
+      link: "https://www.adenin.com/pocdef",
+      description:
+        "We called our new series “Toasti-Fi” because consumers should have access to their home appliances everywhere and anytime. With “Toasti-Fi” we help our customers to stay connected to their home, no matter where they are.",
+      thumbnail:
+        "https://my.digitalassistant.app/rimage/demo.adenin.com/images/t0001054878/tp1000126.png?format=jpeg&width=150&height=150&mode=crop&quality=98",
+      ago: "2 days ago",
+    },
+  ];
 
-    let items = [
-      {
-        id: '1054889',
-        title: 'Grand Opening of a New Plant in China',
-        link: 'https://www.adenin.com/pocdef',
-        thumbnail: 'https://my.digitalassistant.app/rimage/demo.adenin.com/images/t0001054889/tp1000126.jpeg?format=jpeg&width=150&height=150&mode=crop&quality=98',
-        description: 'On Monday, the new plant of Toaster Inc. was officially opened at Chuansha, Shanghai. ',
-        ago: "30 minutes ago"
-      },
-      {
-        id: '1054891',
-        title: 'Opening of new logistics and distribution center',
-        link: 'https://www.adenin.com/pocdef',
-        description: 'The new 10,000 square meter distribution centre in Edison, New Jersey will offer a wide range of logistics services. Together the two Toaster warehouse facilities reinforce the company’s existing network of 19 locations in the USA.',
-        thumbnail: 'https://my.digitalassistant.app/rimage/demo.adenin.com/images/t0001054891/tp1000126.jpeg?format=jpeg&width=150&height=150&mode=crop&quality=98',
-        ago: "1 day ago"
-      },
-      {
-        id: '1054878',
-        title: 'New Wi-Fi enabled product line',
-        link: 'https://www.adenin.com/pocdef',
-        description: 'We called our new series “Toasti-Fi” because consumers should have access to their home appliances everywhere and anytime. With “Toasti-Fi” we help our customers to stay connected to their home, no matter where they are.',
-        thumbnail: 'https://my.digitalassistant.app/rimage/demo.adenin.com/images/t0001054878/tp1000126.png?format=jpeg&width=150&height=150&mode=crop&quality=98',
-        ago: "2 days ago"
-      }
-    ]; 
+  var value = items.length;
+  var response = {};
 
-    var value = items.length;
-    var response = {};
+  response.items = items;
+  response.title = "Corporate News";
+  response.link = "https://www.adenin.com/pocdef";
+  response.linkLabel = "All News";
+  response.actionable = value > 0;
 
-    response.items = items;
-    response.title = 'Corporate News';
-    response.link = 'https://www.adenin.com/pocdef';
-    response.linkLabel = 'All News';
-    response.actionable = value > 0;
+  response.thumbnail =
+    "https://www.adenin.com/assets/images/wp-images/logo/sharepoint-online.svg";
 
-    response.thumbnail = 'https://www.adenin.com/assets/images/wp-images/logo/sharepoint-online.svg';
+  if (value > 0) {
+    response.value = value;
+    response.date = items[0].date; // items are already sorted ascending
+    response.description = "You have 3 news items.";
+    response.briefing =
+      response.description +
+      " The latest is <b>" +
+      response.items[0].title +
+      "</b>.";
+  }
 
-    if (value > 0) {
-      response.value = value;
-      response.date = items[0].date; // items are alrady sorted ascending
-      response.description = 'You have 3 news items.';
-      response.briefing = response.description + ' The latest is <b>' + response.items[0].title + '</b>.';
-    } 
+  response._card = {
+    type: "status-list",
+  };
 
-    response._card = {
-      type: 'status-list'
-    }; 
-
-    return response;
+  return response;
 }
-
 ```
 
 # Corp News
@@ -82,6 +91,14 @@ All
 Notification
 List
 
+## Configuration
+
+- card1x1 compact
+- card2x1 compact
+- maxWidth 2
+- defaultWidth 2
+- defaultHeight 2
+
 ```json adaptive-card
 {
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
@@ -91,6 +108,7 @@ List
     {
       "speak": "Tom\u0027s Pie is a Pizza restaurant which is rated 9.3 by customers.",
       "type": "ColumnSet",
+      "$data": "${items}",
       "columns": [
         {
           "type": "Column",
@@ -231,9 +249,7 @@ List
                 {
                   "type": "Action.ToggleVisibility",
                   "title": "Comment",
-                  "targetElements": [
-                    "CommentSection"
-                  ]
+                  "targetElements": ["CommentSection"]
                 }
               ]
             }
@@ -263,6 +279,59 @@ List
       "isVisible": false,
       "id": "CommentSection",
       "style": "emphasis"
+    },
+    {
+      "type": "TextBlock",
+      "text": "This card is empty",
+      "wrap": true,
+      "$when": "${count(items)==0}"
+    },
+    {
+      "type": "Container",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "${string(count(items))}",
+          "id": "counter"
+        },
+        {
+          "type": "TextBlock",
+          "text": "${description}",
+          "id": "heading"
+        },
+        {
+          "type": "TextBlock",
+          "text": "${_compact.description}",
+          "id": "description"
+        },
+        {
+          "type": "TextBlock",
+          "text": "${_compact.imageUrl}",
+          "id": "imageUrl"
+        },
+        {
+          "type": "TextBlock",
+          "text": "${linkLabel}",
+          "id": "buttonLabel"
+        },
+        {
+          "type": "TextBlock",
+          "text": "${link}",
+          "id": "buttonUrl"
+        },
+        {
+          "type": "TextBlock",
+          "text": "${_compact.buttonLabel2}",
+          "id": "buttonLabel2"
+        },
+        {
+          "type": "TextBlock",
+          "text": "${_compact.buttonUrl2}",
+          "id": "buttonUrl2"
+        }
+      ],
+      "id": "expressions",
+      "isVisible": false
     }
   ]
 }

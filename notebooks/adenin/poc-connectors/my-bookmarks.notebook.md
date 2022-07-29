@@ -1,54 +1,57 @@
 ```javascript connector
 async function handleRequest(request) {
+  let items = [
+    {
+      id: "123",
+      title: "HR Portal",
+      link: "https://www.adenin.com/pocdef",
+      thumbnail:
+        "https://www.adenin.com/assets/images/wp-images/logo/sharepoint-online.png",
+    },
+    {
+      id: "121",
+      title: "Office 365",
+      link: "https://www.adenin.com/pocdef",
+      thumbnail:
+        "https://www.adenin.com/assets/images/wp-images/logo/office-365.png",
+    },
+    {
+      id: "133",
+      title: "SharePoint Sites",
+      link: "https://www.adenin.com/pocdef",
+      thumbnail:
+        "https://www.adenin.com/assets/images/wp-images/logo/sharepoint-online.png",
+    },
+    {
+      id: "131",
+      title: "Asana",
+      link: "https://www.adenin.com/pocdef",
+      thumbnail:
+        "https://www.adenin.com/assets/images/wp-images/logo/asana.png",
+    },
+    {
+      id: "321",
+      title: "Zoom",
+      link: "https://www.adenin.com/pocdef",
+      thumbnail: "https://www.adenin.com/assets/images/wp-images/logo/zoom.png",
+    },
+  ];
 
-    let items = [
-      {
-        id: '123',
-        title: 'HR Portal',
-        link: 'https://www.adenin.com/pocdef',
-        thumbnail: 'https://www.adenin.com/assets/images/wp-images/logo/sharepoint-online.png',
-      },
-      {
-        id: '121',
-        title: 'Office 365',
-        link: 'https://www.adenin.com/pocdef',
-        thumbnail: 'https://www.adenin.com/assets/images/wp-images/logo/office-365.png',
-      },
-      {
-        id: '133',
-        title: 'SharePoint Sites',
-        link: 'https://www.adenin.com/pocdef',
-        thumbnail: 'https://www.adenin.com/assets/images/wp-images/logo/sharepoint-online.png',
-      },
-      {
-        id: '131',
-        title: 'Asana',
-        link: 'https://www.adenin.com/pocdef',
-        thumbnail: 'https://www.adenin.com/assets/images/wp-images/logo/asana.png',
-      },
-      {
-        id: '321',
-        title: 'Zoom',
-        link: 'https://www.adenin.com/pocdef',
-        thumbnail: 'https://www.adenin.com/assets/images/wp-images/logo/zoom.png',
-      },
-    ];
-  
-    var value = items.length;
-    var response = {};
-    response.items = items;
-    response.title = 'My Bookmarks';
-    response.actionable = false;
-    response["_pageSize"] = 5;
-    response.thumbnail = 'https://www.adenin.com/assets/images/identity/Icon_Digital_Assistant.svg';
+  var value = items.length;
+  var response = {};
+  response.items = items;
+  response.title = "My Bookmarks";
+  response.actionable = false;
+  response["_pageSize"] = 5;
+  response.thumbnail =
+    "https://www.adenin.com/assets/images/identity/Icon_Digital_Assistant.svg";
 
-    response._card = {
-      type: 'cloud-files'
-    };
-  
-    return response;
+  response._card = {
+    type: "cloud-files",
+  };
+
+  return response;
 }
-
 ```
 
 # Bookmarks
@@ -71,12 +74,26 @@ This Card is a convenient shortcut to a set of bookmarked links.
 
 All
 
+## Features
+
+Notification
+List
+
+## Configuration
+
+- card1x1 compact
+- card2x1 compact
+- maxWidth 2
+- defaultWidth 2
+- defaultHeight 2
+
 ```json adaptive-card
 {
   "type": "AdaptiveCard",
   "body": [
     {
       "type": "Container",
+      "$data": "${items}",
       "bleed": true,
       "items": [
         {
@@ -239,6 +256,59 @@ All
           ]
         }
       ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "This card is empty",
+      "wrap": true,
+      "$when": "${count(items)==0}"
+    },
+    {
+      "type": "Container",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "${string(count(items))}",
+          "id": "counter"
+        },
+        {
+          "type": "TextBlock",
+          "text": "${description}",
+          "id": "heading"
+        },
+        {
+          "type": "TextBlock",
+          "text": "${_compact.description}",
+          "id": "description"
+        },
+        {
+          "type": "TextBlock",
+          "text": "${_compact.imageUrl}",
+          "id": "imageUrl"
+        },
+        {
+          "type": "TextBlock",
+          "text": "${linkLabel}",
+          "id": "buttonLabel"
+        },
+        {
+          "type": "TextBlock",
+          "text": "${link}",
+          "id": "buttonUrl"
+        },
+        {
+          "type": "TextBlock",
+          "text": "${_compact.buttonLabel2}",
+          "id": "buttonLabel2"
+        },
+        {
+          "type": "TextBlock",
+          "text": "${_compact.buttonUrl2}",
+          "id": "buttonUrl2"
+        }
+      ],
+      "id": "expressions",
+      "isVisible": false
     }
   ],
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
