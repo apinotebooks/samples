@@ -93,7 +93,6 @@ List
   "body": [
     {
       "type": "Container",
-      "$data": "${items}",
       "bleed": true,
       "items": [
         {
