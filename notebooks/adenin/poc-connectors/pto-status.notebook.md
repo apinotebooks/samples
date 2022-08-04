@@ -1,8 +1,7 @@
 ```javascript connector
 async function handleRequest(request) {
-  var response = {};
 
-  var items = {
+  var response = {
     description: "200 hours total, 80 hours remaining, 12 hours planned",
     total_allowance: "200",
     charitable_leave_allowance: "8",
@@ -13,8 +12,6 @@ async function handleRequest(request) {
 
   response.items = items;
   response.title = "PTO allowance";
-  response.link = "https://www.adenin.com/pocdef";
-  response.linkLabel = "Request PTO";
   response.actionable = false;
   response.thumbnail =
     "https://www.adenin.com/assets/images/wp-images/logo/workday.svg";
@@ -47,16 +44,13 @@ All
 
 ## Features
 
-Notification
 List
 
 ## Configuration
 
-- card1x1 compact
-- card2x1 compact
 - maxWidth 2
 - defaultWidth 2
-- defaultHeight 2
+- defaultHeight 1
 
 ```json adaptive-card
 {
@@ -64,7 +58,6 @@ List
   "body": [
     {
       "type": "Container",
-      "$data": "${items}",
       "bleed": true,
       "items": [
         {
@@ -200,59 +193,6 @@ List
           "iconUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAACcklEQVRoge2ZP2gTURzHv79LSJqiFt3ERedi50adBbvWAyENSUtdFP8MGap7IEsF6WDBVo7SSiGu1qGDWxvHDt1rEJ1EuEKkwbufQwyU5t67XN57d0XuM4W8d+/3+XLvfnlHgJSUlJQkobAJD6r717PMLxg0A+AqgIxhJw/ADxB99MCNbad4JJssDVCqtO4C/AHARZ2GETgmotlNZ3pXNEEYoFz+csO3/AMkJ9/H5aw/9X799tegQUt0FVveEpKXB4BL9MdaEg2KA/T2/HlB6CIMgN4De164JhrISi5S7Db8stuZWG42J7vDzLbtw1y+4NaYUI/iIrsDSnQ7JyvDygNAsznZ/TnxazlqHWMB8oWxp7Z9mItyzaeVmZOodWRbSAkm1HPjbr1U2Q8cBuHRllNcVa1j7A5I0CYPxB/AB/HiaflSdW9BZcE4AzAIj7ecW+/6X5SqewtgequyaFwBBrbNKXklhzgCGJOHjgVCMCoPXYsIMC4PnQudIRZ56F7sH8GtUiLf/8W+92QnH7WY7gA+iB8KWqWwVr7g1mz784Ur7uVa1II6jxIDfX6u0ppn5tBt0zt2jAWdQkPRdQcG9vxcpTXP4DWNNQLRsXhi8tBQIFF5qBZh4PnZbhOnPFQLZfzx9f5nU30+DKUuxNR5Vi4fvGb6vcjMr5DA+4ViANSZOiO1P10k8Uamlf86gBebRThCF1mA7wZERoPxTTQkDkC0Y0RmBIggdBEG8MANAMdGjKLhWuw1RIPCANtO8YiIZgG4RrSGwyWi+xsbd9qiCdIutOlM73LWnwKwCqCNeB5sD0CbgDcZ9m7K/p1JSUlJSZ6/alDy5Hkrg9cAAAAASUVORK5CYII="
         }
       ]
-    },
-    {
-      "type": "TextBlock",
-      "text": "This card is empty",
-      "wrap": true,
-      "$when": "${count(items)==0}"
-    },
-    {
-      "type": "Container",
-      "items": [
-        {
-          "type": "TextBlock",
-          "text": "${string(count(items))}",
-          "id": "counter"
-        },
-        {
-          "type": "TextBlock",
-          "text": "${items.description}",
-          "id": "heading"
-        },
-        {
-          "type": "TextBlock",
-          "text": "${_compact.description}",
-          "id": "description"
-        },
-        {
-          "type": "TextBlock",
-          "text": "${_compact.imageUrl}",
-          "id": "imageUrl"
-        },
-        {
-          "type": "TextBlock",
-          "text": "${linkLabel}",
-          "id": "buttonLabel"
-        },
-        {
-          "type": "TextBlock",
-          "text": "${link}",
-          "id": "buttonUrl"
-        },
-        {
-          "type": "TextBlock",
-          "text": "${_compact.buttonLabel2}",
-          "id": "buttonLabel2"
-        },
-        {
-          "type": "TextBlock",
-          "text": "${_compact.buttonUrl2}",
-          "id": "buttonUrl2"
-        }
-      ],
-      "id": "expressions",
-      "isVisible": false
     }
   ],
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
