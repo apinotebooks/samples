@@ -1,6 +1,6 @@
 ```javascript connector
 async function handleRequest(request) {
-
+  
   var response = {
     description: "200 hours total, 80 hours remaining, 12 hours planned",
     total_allowance: "200",
@@ -10,7 +10,7 @@ async function handleRequest(request) {
     remaining_public_holiday_count: "16",
   };
 
-  response.title = "PTO allowance";
+  response.title = "PTO Request";
   response.link = "https://www.adenin.com/pocdef";
   response.linkLabel = "Request PTO";
   response.actionable = false;
@@ -174,25 +174,95 @@ List
       ]
     },
     {
-      "type": "ActionSet",
-      "actions": [
+      "type": "Container",
+      "bleed": true,
+      "style": "emphasis",
+      "items": [
         {
-          "type": "Action.Submit",
-          "title": "Request PTO",
-          "data": {
-            "msteams": {
-              "type": "imBack",
-              "value": "I want to request PTO"
-            }
-          }
+          "type": "TextBlock",
+          "text": "From",
+          "wrap": true,
+          "size": "Small"
         },
         {
-          "type": "Action.OpenUrl",
-          "title": "PTO help",
-          "url": "https://www.adenin.com/pocdef",
-          "iconUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP\u002BgvaeTAAACcklEQVRoge2ZP2gTURzHv79LSJqiFt3ERedi50adBbvWAyENSUtdFP8MGap7IEsF6WDBVo7SSiGu1qGDWxvHDt1rEJ1EuEKkwbufQwyU5t67XN57d0XuM4W8d\u002B/3\u002BXLvfnlHgJSUlJQkobAJD6r717PMLxg0A\u002BAqgIxhJw/ADxB99MCNbad4JJssDVCqtO4C/AHARZ2GETgmotlNZ3pXNEEYoFz\u002BcsO3/AMkJ9/H5aw/9X799tegQUt0FVveEpKXB4BL9MdaEg2KA/T2/HlB6CIMgN4De164JhrISi5S7Db8stuZWG42J7vDzLbtw1y\u002B4NaYUI/iIrsDSnQ7JyvDygNAsznZ/TnxazlqHWMB8oWxp7Z9mItyzaeVmZOodWRbSAkm1HPjbr1U2Q8cBuHRllNcVa1j7A5I0CYPxB/AB/HiaflSdW9BZcE4AzAIj7ecW\u002B/6X5SqewtgequyaFwBBrbNKXklhzgCGJOHjgVCMCoPXYsIMC4PnQudIRZ56F7sH8GtUiLf/8W\u002B92QnH7WY7gA\u002BiB8KWqWwVr7g1mz784Ur7uVa1II6jxIDfX6u0ppn5tBt0zt2jAWdQkPRdQcG9vxcpTXP4DWNNQLRsXhi8tBQIFF5qBZh4PnZbhOnPFQLZfzx9f5nU30\u002BDKUuxNR5Vi4fvGb6vcjMr5DA\u002B4ViANSZOiO1P10k8Uamlf86gBebRThCF1mA7wZERoPxTTQkDkC0Y0RmBIggdBEG8MANAMdGjKLhWuw1RIPCANtO8YiIZgG4RrSGwyWi\u002Bxsbd9qiCdIutOlM73LWnwKwCqCNeB5sD0CbgDcZ9m7K/p1JSUlJSZ6/alDy5Hkrg9cAAAAASUVORK5CYII="
+          "type": "Input.Date",
+          "spacing": "None",
+          "id": "from-date"
+        },
+        {
+          "type": "TextBlock",
+          "text": "To",
+          "wrap": true,
+          "size": "Small",
+          "spacing": "Small"
+        },
+        {
+          "type": "Input.Date",
+          "spacing": "None",
+          "id": "to-date"
+        },
+        {
+          "type": "TextBlock",
+          "text": "Type of PTO",
+          "wrap": true,
+          "size": "Small",
+          "spacing": "Small"
+        },
+        {
+          "type": "Input.ChoiceSet",
+          "choices": [
+            {
+              "title": "Annual Leave",
+              "value": "Choice 1"
+            },
+            {
+              "title": "Parental Leave",
+              "value": "Choice 2"
+            },
+            {
+              "title": "Compassionate Leave",
+              "value": "Choice 3"
+            },
+            {
+              "title": "Jury Duty",
+              "value": "Choice 4"
+            },
+            {
+              "title": "Sick Leave",
+              "value": "Choice 5"
+            }
+          ],
+          "placeholder": "Placeholder text",
+          "spacing": "Small",
+          "style": "expanded",
+          "id": "type-of-pto"
+        },
+        {
+          "type": "TextBlock",
+          "text": "Comment",
+          "wrap": true,
+          "spacing": "Small",
+          "size": "Small"
+        },
+        {
+          "type": "Input.Text",
+          "placeholder": "Optional",
+          "spacing": "None",
+          "isMultiline": true,
+          "id": "comment"
+        },
+        {
+          "type": "ActionSet",
+          "actions": [
+            {
+              "type": "Action.Submit",
+              "title": "Submit PTO request",
+              "id": "_success_Your_PTO_request_was_submitted"
+            }
+          ]
         }
-      ]
+      ],
+      "id": "request-pto"
     },
     {
       "type": "Container",

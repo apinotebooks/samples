@@ -210,7 +210,16 @@ List
                       "text": "${toUpper(status)}",
                       "wrap": true,
                       "weight": "Bolder",
-                      "color": "${if(status == \u0027Open\u0027, \u0027attention\u0027, \u0027good\u0027)}"
+                      "color": "attention",
+                      "$when": "${status == \u0027Open\u0027}"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "${toUpper(status)}",
+                      "wrap": true,
+                      "weight": "Bolder",
+                      "color": "good",
+                      "$when": "${status != \u0027Open\u0027}"
                     }
                   ]
                 }
@@ -234,63 +243,63 @@ List
               ]
             }
           ]
-        }
-      ]
-    },
-    {
-      "type": "ActionSet",
-      "actions": [
-        {
-          "type": "Action.ToggleVisibility",
-          "title": "Comment",
-          "targetElements": [
-            {
-              "elementId": "toggle-comment",
-              "isVisible": true
-            },
-            {
-              "elementId": "toggle-message",
-              "isVisible": false
-            },
-            {
-              "elementId": "toggle-mark_as",
-              "isVisible": false
-            }
-          ]
         },
         {
-          "type": "Action.ToggleVisibility",
-          "title": "Send message",
-          "targetElements": [
+          "type": "ActionSet",
+          "actions": [
             {
-              "elementId": "toggle-comment",
-              "isVisible": false
+              "type": "Action.ToggleVisibility",
+              "title": "Comment",
+              "targetElements": [
+                {
+                  "elementId": "toggle-comment",
+                  "isVisible": true
+                },
+                {
+                  "elementId": "toggle-message",
+                  "isVisible": false
+                },
+                {
+                  "elementId": "toggle-mark_as",
+                  "isVisible": false
+                }
+              ]
             },
             {
-              "elementId": "toggle-message",
-              "isVisible": true
+              "type": "Action.ToggleVisibility",
+              "title": "Send message",
+              "targetElements": [
+                {
+                  "elementId": "toggle-comment",
+                  "isVisible": false
+                },
+                {
+                  "elementId": "toggle-message",
+                  "isVisible": true
+                },
+                {
+                  "elementId": "toggle-mark_as",
+                  "isVisible": false
+                }
+              ]
             },
             {
-              "elementId": "toggle-mark_as",
-              "isVisible": false
-            }
-          ]
-        },
-        {
-          "type": "Action.ToggleVisibility",
-          "title": "Mark as",
-          "targetElements": [
-            {
-              "elementId": "toggle-comment",
-              "isVisible": false
-            },
-            {
-              "elementId": "toggle-message",
-              "isVisible": false
-            },
-            {
-              "elementId": "toggle-mark_as",
-              "isVisible": true
+              "type": "Action.ToggleVisibility",
+              "title": "Mark as",
+              "targetElements": [
+                {
+                  "elementId": "toggle-comment",
+                  "isVisible": false
+                },
+                {
+                  "elementId": "toggle-message",
+                  "isVisible": false
+                },
+                {
+                  "elementId": "toggle-mark_as",
+                  "isVisible": true
+                }
+              ]
             }
           ]
         }

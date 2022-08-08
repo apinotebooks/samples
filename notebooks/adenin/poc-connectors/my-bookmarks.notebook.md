@@ -76,13 +76,10 @@ All
 
 ## Features
 
-Notification
 List
 
 ## Configuration
 
-- card1x1 compact
-- card2x1 compact
 - maxWidth 2
 - defaultWidth 2
 - defaultHeight 2

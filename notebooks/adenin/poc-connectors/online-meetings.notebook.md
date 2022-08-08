@@ -192,8 +192,7 @@ List
               "weight": "Bolder",
               "isSubtle": true,
               "text": "${title}",
-              "size": "Large",
-              "spacing": "None"
+              "size": "Large"
             },
             {
               "type": "ColumnSet",
@@ -266,7 +265,9 @@ List
                 {
                   "type": "Action.ToggleVisibility",
                   "title": "Change RSVP",
-                  "targetElements": ["items_${$index} change_rsvp"]
+                  "targetElements": [
+                    "items_${$index} change_rsvp"
+                  ]
                 }
               ]
             },
@@ -310,8 +311,7 @@ List
           "bleed": true
         }
       ],
-      "bleed": true,
-      "spacing": "None"
+      "bleed": true
     },
     {
       "type": "TextBlock",

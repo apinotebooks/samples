@@ -140,7 +140,8 @@ List
                   "style": "Person",
                   "altText": "${requested_by} photo"
                 }
-              ]
+              ],
+              "spacing": "None"
             },
             {
               "type": "Column",
@@ -190,10 +191,10 @@ List
                     },
                     {
                       "type": "TextBlock",
-                      "wrap": true,
                       "spacing": "None",
                       "size": "Medium",
-                      "text": "${description}"
+                      "text": "${description}",
+                      "wrap": true
                     },
                     {
                       "type": "ColumnSet",
@@ -225,8 +226,8 @@ List
                       "spacing": "Small"
                     }
                   ],
-                  "style": "emphasis",
-                  "bleed": true
+                  "bleed": true,
+                  "spacing": "Small"
                 }
               ],
               "verticalContentAlignment": "Center"
@@ -237,49 +238,49 @@ List
             "type": "Action.OpenUrl",
             "url": "https://www.adenin.com/pocdef"
           }
-        }
-      ]
-    },
-    {
-      "type": "ColumnSet",
-      "columns": [
-        {
-          "type": "Column",
-          "width": "40px"
         },
         {
-          "type": "Column",
-          "width": "stretch",
-          "items": [
+          "type": "ColumnSet",
+          "columns": [
             {
-              "type": "ActionSet",
-              "actions": [
+              "type": "Column",
+              "width": "40px"
+            },
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
                 {
-                  "type": "Action.Submit",
-                  "title": "Quick Approve",
-                  "style": "positive",
-                  "id": "_success1_You_have_approved_this_request"
-                },
-                {
-                  "type": "Action.ToggleVisibility",
-                  "title": "Decline",
-                  "targetElements": [
+                  "type": "ActionSet",
+                  "actions": [
                     {
-                      "elementId": "denial-comment",
-                      "isVisible": true
+                      "type": "Action.Submit",
+                      "title": "Quick Approve",
+                      "style": "positive",
+                      "id": "items_${$index}_success1_You_have_approved_this_request"
                     },
                     {
-                      "elementId": "details-box",
-                      "isVisible": false
+                      "type": "Action.ToggleVisibility",
+                      "title": "Decline",
+                      "targetElements": [
+                        {
+                          "elementId": "denial-comment",
+                          "isVisible": true
+                        },
+                        {
+                          "elementId": "details-box",
+                          "isVisible": false
+                        }
+                      ]
                     }
                   ]
                 }
-              ]
+              ],
+              "backgroundImage": {
+                "horizontalAlignment": "Right"
+              }
             }
-          ],
-          "backgroundImage": {
-            "horizontalAlignment": "Right"
-          }
+          ]
         }
       ]
     },
@@ -322,7 +323,6 @@ List
       ],
       "isVisible": false,
       "bleed": true,
-      "style": "emphasis",
       "id": "denial-comment"
     },
     {
