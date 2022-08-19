@@ -1,6 +1,5 @@
 ```javascript connector
 async function handleRequest(request) {
-  
   var response = {
     description: "200 hours total, 80 hours remaining, 12 hours planned",
     total_allowance: "200",
@@ -14,6 +13,16 @@ async function handleRequest(request) {
   response.actionable = false;
   response.thumbnail =
     "https://www.adenin.com/assets/images/wp-images/logo/workday.svg";
+
+  response._compact = {
+    heading: "",
+    description: response.remaining_allowance + " Remaining hours",
+    imageUrl: "",
+    buttonLabel: "",
+    buttonUrl: "",
+    buttonLabel2: "",
+    buttonUrl2: "",
+  };
 
   return response;
 }
@@ -47,6 +56,7 @@ List
 
 ## Configuration
 
+- card1x1 compact
 - maxWidth 2
 - defaultWidth 2
 - defaultHeight 1
@@ -64,7 +74,7 @@ List
           "columns": [
             {
               "type": "Column",
-              "width": "stretch",
+              "width": "auto",
               "items": [
                 {
                   "type": "TextBlock",
@@ -97,7 +107,8 @@ List
                   "text": "Along with",
                   "wrap": true,
                   "size": "Small",
-                  "isSubtle": true
+                  "isSubtle": true,
+                  "height": "stretch"
                 },
                 {
                   "type": "ColumnSet",
@@ -111,7 +122,8 @@ List
                           "text": "3",
                           "wrap": true,
                           "horizontalAlignment": "Right",
-                          "size": "Large"
+                          "size": "Large",
+                          "spacing": "None"
                         }
                       ],
                       "verticalContentAlignment": "Center"
@@ -123,7 +135,8 @@ List
                         {
                           "type": "TextBlock",
                           "text": "Public Holidays",
-                          "wrap": true
+                          "wrap": true,
+                          "spacing": "None"
                         }
                       ],
                       "spacing": "Small",
@@ -131,7 +144,7 @@ List
                     }
                   ],
                   "separator": true,
-                  "spacing": "Medium"
+                  "spacing": "Small"
                 },
                 {
                   "type": "ColumnSet",
@@ -145,7 +158,8 @@ List
                           "text": "2",
                           "wrap": true,
                           "horizontalAlignment": "Right",
-                          "size": "Large"
+                          "size": "Large",
+                          "spacing": "None"
                         }
                       ],
                       "verticalContentAlignment": "Center"
@@ -157,14 +171,15 @@ List
                         {
                           "type": "TextBlock",
                           "text": "Days of Charitable Leave",
-                          "wrap": true
+                          "wrap": true,
+                          "spacing": "None"
                         }
                       ],
                       "verticalContentAlignment": "Center",
                       "spacing": "Small"
                     }
                   ],
-                  "spacing": "None"
+                  "spacing": "Small"
                 }
               ]
             }
@@ -189,9 +204,10 @@ List
           "type": "Action.OpenUrl",
           "title": "PTO help",
           "url": "https://www.adenin.com/pocdef",
-          "iconUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAACcklEQVRoge2ZP2gTURzHv79LSJqiFt3ERedi50adBbvWAyENSUtdFP8MGap7IEsF6WDBVo7SSiGu1qGDWxvHDt1rEJ1EuEKkwbufQwyU5t67XN57d0XuM4W8d+/3+XLvfnlHgJSUlJQkobAJD6r717PMLxg0A+AqgIxhJw/ADxB99MCNbad4JJssDVCqtO4C/AHARZ2GETgmotlNZ3pXNEEYoFz+csO3/AMkJ9/H5aw/9X799tegQUt0FVveEpKXB4BL9MdaEg2KA/T2/HlB6CIMgN4De164JhrISi5S7Db8stuZWG42J7vDzLbtw1y+4NaYUI/iIrsDSnQ7JyvDygNAsznZ/TnxazlqHWMB8oWxp7Z9mItyzaeVmZOodWRbSAkm1HPjbr1U2Q8cBuHRllNcVa1j7A5I0CYPxB/AB/HiaflSdW9BZcE4AzAIj7ecW+/6X5SqewtgequyaFwBBrbNKXklhzgCGJOHjgVCMCoPXYsIMC4PnQudIRZ56F7sH8GtUiLf/8W+92QnH7WY7gA+iB8KWqWwVr7g1mz784Ur7uVa1II6jxIDfX6u0ppn5tBt0zt2jAWdQkPRdQcG9vxcpTXP4DWNNQLRsXhi8tBQIFF5qBZh4PnZbhOnPFQLZfzx9f5nU30+DKUuxNR5Vi4fvGb6vcjMr5DA+4ViANSZOiO1P10k8Uamlf86gBebRThCF1mA7wZERoPxTTQkDkC0Y0RmBIggdBEG8MANAMdGjKLhWuw1RIPCANtO8YiIZgG4RrSGwyWi+xsbd9qiCdIutOlM73LWnwKwCqCNeB5sD0CbgDcZ9m7K/p1JSUlJSZ6/alDy5Hkrg9cAAAAASUVORK5CYII="
+          "iconUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP\u002BgvaeTAAACcklEQVRoge2ZP2gTURzHv79LSJqiFt3ERedi50adBbvWAyENSUtdFP8MGap7IEsF6WDBVo7SSiGu1qGDWxvHDt1rEJ1EuEKkwbufQwyU5t67XN57d0XuM4W8d\u002B/3\u002BXLvfnlHgJSUlJQkobAJD6r717PMLxg0A\u002BAqgIxhJw/ADxB99MCNbad4JJssDVCqtO4C/AHARZ2GETgmotlNZ3pXNEEYoFz\u002BcsO3/AMkJ9/H5aw/9X799tegQUt0FVveEpKXB4BL9MdaEg2KA/T2/HlB6CIMgN4De164JhrISi5S7Db8stuZWG42J7vDzLbtw1y\u002B4NaYUI/iIrsDSnQ7JyvDygNAsznZ/TnxazlqHWMB8oWxp7Z9mItyzaeVmZOodWRbSAkm1HPjbr1U2Q8cBuHRllNcVa1j7A5I0CYPxB/AB/HiaflSdW9BZcE4AzAIj7ecW\u002B/6X5SqewtgequyaFwBBrbNKXklhzgCGJOHjgVCMCoPXYsIMC4PnQudIRZ56F7sH8GtUiLf/8W\u002B92QnH7WY7gA\u002BiB8KWqWwVr7g1mz784Ur7uVa1II6jxIDfX6u0ppn5tBt0zt2jAWdQkPRdQcG9vxcpTXP4DWNNQLRsXhi8tBQIFF5qBZh4PnZbhOnPFQLZfzx9f5nU30\u002BDKUuxNR5Vi4fvGb6vcjMr5DA\u002B4ViANSZOiO1P10k8Uamlf86gBebRThCF1mA7wZERoPxTTQkDkC0Y0RmBIggdBEG8MANAMdGjKLhWuw1RIPCANtO8YiIZgG4RrSGwyWi\u002Bxsbd9qiCdIutOlM73LWnwKwCqCNeB5sD0CbgDcZ9m7K/p1JSUlJSZ6/alDy5Hkrg9cAAAAASUVORK5CYII="
         }
-      ]
+      ],
+      "spacing": "Small"
     },
     {
       "type": "TextBlock",
