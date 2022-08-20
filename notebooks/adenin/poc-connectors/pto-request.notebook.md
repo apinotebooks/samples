@@ -38,10 +38,6 @@ Get an at-a-glance view of your current personal time off allowance, including p
 
 ![logo](https://www.adenin.com/assets/images/wp-images/logo/workday.svg)
 
-## Audience
-
-All
-
 ## Features
 
 List
